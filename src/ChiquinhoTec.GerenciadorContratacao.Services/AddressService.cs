@@ -8,17 +8,17 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
     //
     public class AddressService : IAddressService
     {
-        private readonly IAddressRepository _AddressRepository;
+        private readonly IAddressRepository _addressRepository;
 
         //
         // Summary:
         //     /// Method responsible for initializing the service. ///
         //
         // Parameters:
-        //   supervisorRepository:
-        //     The supervisorRepository param.
+        //   addressRepository:
+        //     The addressRepository param.
         //
-        public AddressService(IAddressRepository AddressRepository)
-            => _AddressRepository = AddressRepository;
+        public AddressService(IAddressRepository addressRepository)
+            => _addressRepository = addressRepository;
     }
 }

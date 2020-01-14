@@ -12,19 +12,19 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
 
         public string PostalCode { get; private set; }
 
-        public string Estado { get; private set; }
+        public string State { get; private set; }
 
         public string City { get; private set; }
 
-        public string Bairro { get; private set; }
+        public string District { get; private set; }
 
         public string Address { get; private set; }
 
-        public int Number { get; private set; }
+        public int AddressNumber { get; private set; }
 
-        public string Complemento { get; private set; }
+        public string Complement { get; private set; }
 
-        public bool EnderecoPrincipal { get; private set; }
+        public bool PrimaryAddress { get; private set; }
 
         public Person Person { get; private set; }
     }

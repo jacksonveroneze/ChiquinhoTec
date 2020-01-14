@@ -8,17 +8,17 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
     //
     public class PersonService : IPersonService
     {
-        private readonly IPersonRepository _PersonRepository;
+        private readonly IPersonRepository _personRepository;
 
         //
         // Summary:
         //     /// Method responsible for initializing the service. ///
         //
         // Parameters:
-        //   supervisorRepository:
-        //     The supervisorRepository param.
+        //   personRepository:
+        //     The personRepository param.
         //
-        public PersonService(IPersonRepository PersonRepository)
-            => _PersonRepository = PersonRepository;
+        public PersonService(IPersonRepository personRepository)
+            => _personRepository = personRepository;
     }
 }

@@ -8,6 +8,14 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
     //
     public class InterviewCommand : BaseEntity
     {
+        public Guid Id { get; set; }
 
+        public DateTime Date { get; set; }
+
+        public TimeSpan Schedule { get; set; }
+
+        public string Squad { get; set; }
+
+        public Guid PersonId { get; set; }
     }
 }

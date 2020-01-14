@@ -12,7 +12,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
 
         public DateTime Date { get; private set; }
 
-        public TimeSpan Time { get; private set; }
+        public TimeSpan Schedule { get; private set; }
 
         public string Squad { get; private set; }
 

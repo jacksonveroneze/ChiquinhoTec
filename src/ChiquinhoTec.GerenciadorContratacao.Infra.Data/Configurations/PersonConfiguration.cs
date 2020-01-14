@@ -12,6 +12,77 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.Property(e => e.Id)
                 .HasColumnName("id");
+
+            builder.Property(e => e.Name)
+                .HasColumnName("name")
+                .HasColumnType("varchar(100)")
+                .IsRequired();
+
+            builder.Property(c => c.BirthDate)
+                .HasColumnName("birthDate")
+                .HasColumnType("date")
+                .IsRequired();
+
+            builder.OwnsOne<Cpf>(e => e.Cpf, v =>
+            {
+                v.Property(c => c.Value)
+                .HasColumnName("cpf")
+                .HasColumnType("varchar(11)")
+                .IsRequired();
+
+                v.HasIndex(b => b.Value).IsUnique();
+            });
+
+            builder.Property(e => e.Phone)
+                .HasColumnName("phone")
+                .HasColumnType("varchar(20)")
+                .IsRequired();
+
+            builder.OwnsOne<Email>(e => e.Email, v =>
+            {
+                v.Property(c => c.Value)
+                .HasColumnName("email")
+                .HasColumnType("varchar(100)")
+                .IsRequired();
+
+                v.HasIndex(b => b.Value).IsUnique();
+            });
+
+            builder.Property(e => e.Profile)
+                .HasColumnName("profile")
+                .HasColumnType("varchar(100)")
+                .IsRequired();
+
+            builder.Property(e => e.ProfessionalDescription)
+                .HasColumnName("professional_description")
+                .HasColumnType("varchar(100)")
+                .IsRequired();
+
+            builder.Property(c => c.CreatedAt)
+                .HasColumnName("created_at")
+                .HasColumnType("datetime")
+                .IsRequired();
+
+            builder.Property(c => c.UpdatedAt)
+                .HasColumnName("updated_at")
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("null");
+
+            builder.Property(c => c.DeletedAt)
+                .HasColumnName("deleted_at")
+                .HasColumnType("datetime")
+                .HasDefaultValueSql("null");
+
+            builder.Property(c => c.IsActive)
+                .HasColumnName("is_active")
+                .HasColumnType("boolean")
+                .HasDefaultValueSql("true");
+
+            builder.Property(c => c.Version)
+                .HasColumnName("version")
+                .HasColumnType("integer")
+                .HasDefaultValueSql("1")
+                .IsRequired();
         }
     }
 }

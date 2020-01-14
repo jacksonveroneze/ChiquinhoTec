@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+  api:
+    build:
+      context: src/ChiquinhoTec.GerenciadorContratacao.Application/
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    ports:
+      - 8000:80
+    environment:
+      - ASPNETCORE_URLS=http://+:80
+      - DOTNET_RUNNING_IN_CONTAINER=true
+      - ASPNETCORE_ENVIRONMENT=Development
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - 5434:5432
+
+volumes:
+  db:

@@ -8,17 +8,17 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
     //
     public class InterviewService : IInterviewService
     {
-        private readonly IInterviewRepository _InterviewRepository;
+        private readonly IInterviewRepository _interviewRepository;
 
         //
         // Summary:
         //     /// Method responsible for initializing the service. ///
         //
         // Parameters:
-        //   supervisorRepository:
-        //     The supervisorRepository param.
+        //   interviewRepository:
+        //     The interviewRepository param.
         //
-        public InterviewService(IInterviewRepository InterviewRepository)
-            => _InterviewRepository = InterviewRepository;
+        public InterviewService(IInterviewRepository interviewRepository)
+            => _interviewRepository = interviewRepository;
     }
 }

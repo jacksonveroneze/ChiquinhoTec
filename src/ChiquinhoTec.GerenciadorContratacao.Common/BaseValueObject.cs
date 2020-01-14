@@ -4,7 +4,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
 {
     //
     // Summary:
-    //     /// Classe responsável pelo BaseValueObject. ///
+    //     /// Class responsible for BaseValueObject. ///
     //
     public abstract class BaseValueObject
     {

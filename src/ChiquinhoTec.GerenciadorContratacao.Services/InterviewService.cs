@@ -6,9 +6,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
     // Summary:
     //     /// Class responsible for the service. ///
     //
-    public class EnderecoService : IEnderecoService
+    public class InterviewService : IInterviewService
     {
-        private readonly IEnderecoRepository _enderecoRepository;
+        private readonly IInterviewRepository _InterviewRepository;
 
         //
         // Summary:
@@ -18,7 +18,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
         //   supervisorRepository:
         //     The supervisorRepository param.
         //
-        public EnderecoService(IEnderecoRepository enderecoRepository)
-            => _enderecoRepository = enderecoRepository;
+        public InterviewService(IInterviewRepository InterviewRepository)
+            => _InterviewRepository = InterviewRepository;
     }
 }

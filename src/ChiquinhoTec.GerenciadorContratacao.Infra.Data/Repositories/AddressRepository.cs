@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.EnderecoRepository
+namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.AddressRepository
 {
     //
     // Summary:
     //     /// Class responsible for the repository. ///
     //
-    public class EnderecoRepository : BaseRepository<Endereco>, IEnderecoRepository
+    public class AddressRepository : BaseRepository<Address>, IAddressRepository
     {
         //
         // Summary:
@@ -16,6 +16,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.EnderecoRepository
         //   context:
         //     The context param.
         //
-        public EnderecoRepository(ApplicationDbContext context) : base(context) { }
+        public AddressRepository(ApplicationDbContext context) : base(context) { }
     }
 }

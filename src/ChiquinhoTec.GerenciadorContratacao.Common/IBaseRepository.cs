@@ -4,7 +4,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
 {
     //
     // Summary:
-    //     /// Interface responsável pelo contrato. ///
+    //     /// Interface responsible for contrat(IBaseRepository). ///
     //
     public interface IBaseRepository<T> where T : IBaseEntity
     {

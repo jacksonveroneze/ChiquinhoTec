@@ -6,9 +6,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
     // Summary:
     //     /// Class responsible for the service. ///
     //
-    public class PessoaService : IPessoaService
+    public class AddressService : IAddressService
     {
-        private readonly IPessoaRepository _PessoaRepository;
+        private readonly IAddressRepository _AddressRepository;
 
         //
         // Summary:
@@ -18,7 +18,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
         //   supervisorRepository:
         //     The supervisorRepository param.
         //
-        public PessoaService(IPessoaRepository PessoaRepository)
-            => _PessoaRepository = PessoaRepository;
+        public AddressService(IAddressRepository AddressRepository)
+            => _AddressRepository = AddressRepository;
     }
 }

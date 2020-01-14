@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.EntrevistaRepository
+namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.InterviewRepository
 {
     //
     // Summary:
     //     /// Class responsible for the repository. ///
     //
-    public class EntrevistaRepository : BaseRepository<Entrevista>, IEntrevistaRepository
+    public class InterviewRepository : BaseRepository<Interview>, IInterviewRepository
     {
         //
         // Summary:
@@ -16,6 +16,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.EntrevistaRepository
         //   context:
         //     The context param.
         //
-        public EntrevistaRepository(ApplicationDbContext context) : base(context) { }
+        public InterviewRepository(ApplicationDbContext context) : base(context) { }
     }
 }

@@ -2,11 +2,11 @@
 
 namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 {
-    public class PessoaConfiguration : IEntityTypeConfiguration<Pessoa>
+    public class InterviewConfiguration : IEntityTypeConfiguration<Interview>
     {
-        public void Configure(EntityTypeBuilder<Pessoa> builder)
+        public void Configure(EntityTypeBuilder<Interview> builder)
         {
-            builder.ToTable("pessoa");
+            builder.ToTable("interview");
 
             builder.HasKey(e => e.Id);
 

@@ -4,7 +4,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
 {
     //
     // Summary:
-    //     /// Classe responsável por ser o service base. ///
+    //     /// Class responsible for BaseService. ///
     //
     public abstract class BaseService : IBaseService { }
 }

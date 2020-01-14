@@ -4,7 +4,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
 {
     //
     // Summary:
-    //     /// Classe responsável pela BaseEntity. ///
+    //     /// Class responsible for BaseEntity. ///
     //
     public abstract class BaseEntity : IBaseEntity
     {

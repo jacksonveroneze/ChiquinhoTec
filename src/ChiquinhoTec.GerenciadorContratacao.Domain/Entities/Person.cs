@@ -2,6 +2,10 @@
 
 namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
 {
+    //
+    // Summary:
+    //     /// Class responsible for the entity. ///
+    //    
     public class Pessoa : BaseEntity
     {
         public Guid Id { get; private set; } = Guid.NewGuid();

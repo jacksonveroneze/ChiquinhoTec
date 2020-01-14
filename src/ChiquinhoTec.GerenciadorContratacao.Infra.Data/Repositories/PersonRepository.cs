@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.PessoaRepository
+namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.PersonRepository
 {
     //
     // Summary:
     //     /// Class responsible for the repository. ///
     //
-    public class PessoaRepository : BaseRepository<Pessoa>, IPessoaRepository
+    public class PersonRepository : BaseRepository<Person>, IPersonRepository
     {
         //
         // Summary:
@@ -16,6 +16,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.PessoaRepository
         //   context:
         //     The context param.
         //
-        public PessoaRepository(ApplicationDbContext context) : base(context) { }
+        public PersonRepository(ApplicationDbContext context) : base(context) { }
     }
 }

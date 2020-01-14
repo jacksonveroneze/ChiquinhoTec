@@ -2,11 +2,11 @@
 
 namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 {
-    public class EnderecoConfiguration : IEntityTypeConfiguration<Endereco>
+    public class PersonConfiguration : IEntityTypeConfiguration<Person>
     {
-        public void Configure(EntityTypeBuilder<Endereco> builder)
+        public void Configure(EntityTypeBuilder<Person> builder)
         {
-            builder.ToTable("endereco");
+            builder.ToTable("person");
 
             builder.HasKey(e => e.Id);
 

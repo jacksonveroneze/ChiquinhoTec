@@ -24,8 +24,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
 
         public string DescricaoProfissional { get; private set; }
 
-        public virtual IEnumerable<Endereco> Enderecos { get; private set; } = new List<Endereco>();
+        public virtual IEnumerable<Address> Addresss { get; private set; } = new List<Address>();
 
-        public virtual IEnumerable<Entrevista> Entrevistas { get; private set; } = new List<Entrevista>();
+        public virtual IEnumerable<Interview> Entrevistas { get; private set; } = new List<Interview>();
     }
 }

@@ -2,11 +2,11 @@
 
 namespace ChiquinhoTec.GerenciadorContratacao.Common
 {
-//
+    //
     // Summary:
     //     /// Classe responsável pelo BaseRepository. ///
     //
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity, new()
     {
         protected readonly DbContext _context;
 
@@ -15,9 +15,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
         //     /// Médodo responsável por inicializar o repository. ///
         //
         protected BaseRepository(DbContext context)
-        {
-            _context = context;
-        }
+            => _context = context;
 
         //
         // Summary:
@@ -33,6 +31,17 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
 
             await _context.SaveChangesAsync();
         }
+
+        //
+        // Summary:
+        //     /// Método responsável por buscar um registro pelo ID. ///
+        //
+        // Parameters:
+        //   id:
+        //     The id param.
+        //
+        public Task<T> FindAsync(Guid id)
+            => _context.FindAsync<T>(id);
 
         //
         // Summary:
@@ -56,22 +65,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
         //     The id param.
         //
         public Task<List<T>> FindAllAsync(int skip, int take)
-        {
-            return _context.Set<T>().Skip(skip).Take(take).ToListAsync();
-        }
+            => _context.Set<T>().Skip(skip).Take(take).ToListAsync();
 
-        //
-        // Summary:
-        //     /// Método responsável por buscar um registro pelo ID. ///
-        //
-        // Parameters:
-        //   id:
-        //     The id param.
-        //
-        public Task<T> FindAsync(Guid id)
-        {
-            return _context.FindAsync<T>(id);
-        }
 
         //
         // Summary:
@@ -83,8 +78,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
         //
         public async Task RemoveAsync(T entity)
         {
-            _context.Entry(entity).State = EntityState.Deleted;
-            _context.Set<T>().Remove(entity);
+            entity.IsActive = false;
+
+            _context.Set<T>().Update(entity);
 
             await _context.SaveChangesAsync();
         }
@@ -99,8 +95,10 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
         //
         public async Task UpdateAsync(T entity)
         {
+            entity.IncrementVersion();
+
             _context.Set<T>().Update(entity);
-            
+
             await _context.SaveChangesAsync();
         }
     }

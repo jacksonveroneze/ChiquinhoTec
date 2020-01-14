@@ -6,7 +6,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
     // Summary:
     //     /// Classe responsável pela BaseEntity. ///
     //
-    public class BaseEntity : IBaseEntity
+    public abstract class BaseEntity : IBaseEntity
     {
         public DateTime CreatedAt { get; private set; }
 
@@ -14,19 +14,36 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
 
         public DateTime? DeletedAt { get; set; } = null;
 
+        public DateTime? LastSync { get; set; } = null;
+
         public bool IsActive { get; set; } = true;
 
-        //
-        // Summary:
-        //     /// Médodo responsável por inicializar a entidade. ///
-        //
-        protected BaseEntity() => CreatedAt = DateTime.Now;
+        public int Version { get; private set; } = 1;
 
         //
         // Summary:
-        //     /// Médodo responsável por retornar 
-        //     uma representação do objeto em string. ///
+        //     /// Method responsible for initializing the entity. ///
         //
-        public override string ToString() => string.Empty;
+        public BaseEntity() => CreatedAt = DateTime.Now;
+
+        //
+        // Summary:
+        //     /// Method responsible for updating the entity. ///
+        //
+        public void UpdateLastSync() => LastSync = DateTime.Now;
+
+        //
+        // Summary:
+        //     /// Method responsible for updating the entity. ///
+        //
+        public void IncrementVersion() => Version++;
+
+        //
+        // Summary:
+        //     /// Method responsible for returning a string 
+        //     representation of the object. ///
+        //
+        public override string ToString()
+            => $"CreatedAt: {CreatedAt}, UpdatedAt: {UpdatedAt}, DeletedAt: {DeletedAt}, LastSync: {LastSync}, IsActive: {IsActive}, Version: {Version}";
     }
 }

@@ -10,11 +10,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
     {
         Task AddAsync(T entity);
 
+        Task<T> FindAsync(Guid id);
+
         Task<List<T>> FindAllAsync();
 
         Task<List<T>> FindAllAsync(int skip, int take);
-
-        Task<T> FindAsync(Guid id);
 
         Task RemoveAsync(T entity);
 

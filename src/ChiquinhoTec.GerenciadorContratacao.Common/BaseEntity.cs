@@ -14,8 +14,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
 
         public DateTime? DeletedAt { get; set; } = null;
 
-        public DateTime? LastSync { get; set; } = null;
-
         public bool IsActive { get; set; } = true;
 
         public int Version { get; private set; } = 1;
@@ -30,12 +28,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
         // Summary:
         //     /// Method responsible for updating the entity. ///
         //
-        public void UpdateLastSync() => LastSync = DateTime.Now;
-
-        //
-        // Summary:
-        //     /// Method responsible for updating the entity. ///
-        //
         public void IncrementVersion() => Version++;
 
         //
@@ -44,6 +36,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
         //     representation of the object. ///
         //
         public override string ToString()
-            => $"CreatedAt: {CreatedAt}, UpdatedAt: {UpdatedAt}, DeletedAt: {DeletedAt}, LastSync: {LastSync}, IsActive: {IsActive}, Version: {Version}";
+            => $"CreatedAt: {CreatedAt}, UpdatedAt: {UpdatedAt}, DeletedAt: {DeletedAt}, IsActive: {IsActive}, Version: {Version}";
     }
 }

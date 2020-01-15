@@ -36,21 +36,21 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
                 .WithMany(b => b.Interviews)
                 .HasForeignKey("person_id")
                 .OnDelete(DeleteBehavior.Restrict)
-                .HasConstraintName("fk_Interview_person");
+                .HasConstraintName("fk_interview_person");
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")
-                .HasColumnType("datetime")
+                .HasColumnType("timestamptz")
                 .IsRequired();
 
             builder.Property(c => c.UpdatedAt)
                 .HasColumnName("updated_at")
-                .HasColumnType("datetime")
+                .HasColumnType("timestamptz")
                 .HasDefaultValueSql("null");
 
             builder.Property(c => c.DeletedAt)
                 .HasColumnName("deleted_at")
-                .HasColumnType("datetime")
+                .HasColumnType("timestamptz")
                 .HasDefaultValueSql("null");
 
             builder.Property(c => c.IsActive)

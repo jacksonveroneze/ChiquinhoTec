@@ -23,7 +23,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
                 .IsRequired();
 
             builder.Property(c => c.BirthDate)
-                .HasColumnName("birthDate")
+                .HasColumnName("birth_date")
                 .HasColumnType("date")
                 .IsRequired();
 
@@ -34,7 +34,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
                 .HasColumnType("varchar(11)")
                 .IsRequired();
 
-                v.HasIndex(b => b.Value).IsUnique();
+                v.HasIndex(b => b.Value).IsUnique().HasName("uk_person_cpf");
             });
 
             builder.Property(e => e.Phone)
@@ -49,7 +49,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
                 .HasColumnType("varchar(100)")
                 .IsRequired();
 
-                v.HasIndex(b => b.Value).IsUnique();
+                v.HasIndex(b => b.Value).IsUnique().HasName("uk_person_email");
             });
 
             builder.Property(e => e.Profile)
@@ -64,17 +64,17 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")
-                .HasColumnType("datetime")
+                .HasColumnType("timestamptz")
                 .IsRequired();
 
             builder.Property(c => c.UpdatedAt)
                 .HasColumnName("updated_at")
-                .HasColumnType("datetime")
+                .HasColumnType("timestamptz")
                 .HasDefaultValueSql("null");
 
             builder.Property(c => c.DeletedAt)
                 .HasColumnName("deleted_at")
-                .HasColumnType("datetime")
+                .HasColumnType("timestamptz")
                 .HasDefaultValueSql("null");
 
             builder.Property(c => c.IsActive)

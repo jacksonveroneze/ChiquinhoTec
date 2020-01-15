@@ -26,6 +26,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
                 .HasColumnType("varchar(2)")
                 .IsRequired();
 
+            builder.Property(e => e.City)
+                .HasColumnName("city")
+                .HasColumnType("varchar(100)")
+                .IsRequired();
+
             builder.Property(e => e.District)
                 .HasColumnName("district")
                 .HasColumnType("varchar(100)")
@@ -59,17 +64,17 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")
-                .HasColumnType("datetime")
+                .HasColumnType("timestamptz")
                 .IsRequired();
 
             builder.Property(c => c.UpdatedAt)
                 .HasColumnName("updated_at")
-                .HasColumnType("datetime")
+                .HasColumnType("timestamptz")
                 .HasDefaultValueSql("null");
 
             builder.Property(c => c.DeletedAt)
                 .HasColumnName("deleted_at")
-                .HasColumnType("datetime")
+                .HasColumnType("timestamptz")
                 .HasDefaultValueSql("null");
 
             builder.Property(c => c.IsActive)

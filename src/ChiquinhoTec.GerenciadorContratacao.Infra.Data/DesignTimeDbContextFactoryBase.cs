@@ -52,4 +52,3 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
         }
     }
 }
-}

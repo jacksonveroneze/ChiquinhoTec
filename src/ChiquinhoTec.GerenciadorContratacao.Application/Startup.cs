@@ -24,6 +24,10 @@ namespace ChiquinhoTec.GerenciadorContratacao.Application
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddHealthChecks();
+
+            services.AddApplicationInsightsTelemetry(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +47,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Application
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseHealthChecks("/check");
 
             app.UseAuthorization();
 

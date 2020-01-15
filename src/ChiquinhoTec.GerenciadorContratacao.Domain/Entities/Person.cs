@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using ChiquinhoTec.GerenciadorContratacao.Common;
+using ChiquinhoTec.GerenciadorContratacao.Domain.ValueObjects;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
 {

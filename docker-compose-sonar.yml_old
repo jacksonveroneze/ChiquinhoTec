@@ -1,18 +1,19 @@
-version: '2'
+version: '3.7'
 
 services:
   postgresql:
-    image: 'bitnami/postgresql:10'
-    environment:
-      - ALLOW_EMPTY_PASSWORD=yes
-    volumes:
-      - 'postgresql_data:/bitnami/postgresql'
-  sonarqube:
-    image: bitnami/sonarqube:7
+    image: bitnami/postgresql:10
     ports:
-      - '9000:9000'
+      - 5432:5432
+    volumes:
+      - postgresql_data:/bitnami
+  sonarqube:
+    image: bitnami/sonarqube:latest
+    ports:
+      - 9000:9000
     environment:
       - POSTGRESQL_HOST=postgresql
+      - POSTGRESQL_PORT_NUMBER=5432
       - POSTGRESQL_ROOT_USER=postgres
       - POSTGRESQL_CLIENT_CREATE_DATABASE_NAME=bitnami_sonarqube
       - POSTGRESQL_CLIENT_CREATE_DATABASE_USERNAME=bn_sonarqube
@@ -22,6 +23,7 @@ services:
       - SONARQUBE_DATABASE_PASSWORD=bitnami1234
     volumes:
       - sonarqube_data:/bitnami
+
 volumes:
   sonarqube_data:
     driver: local

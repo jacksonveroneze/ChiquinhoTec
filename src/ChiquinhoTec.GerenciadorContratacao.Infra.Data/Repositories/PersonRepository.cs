@@ -1,6 +1,8 @@
-﻿using System;
+﻿using ChiquinhoTec.GerenciadorContratacao.Common;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 
-namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.PersonRepository
+namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Repositories
 {
     //
     // Summary:

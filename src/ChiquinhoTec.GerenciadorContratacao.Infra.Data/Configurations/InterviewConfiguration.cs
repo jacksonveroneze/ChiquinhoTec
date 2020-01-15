@@ -1,4 +1,7 @@
 ﻿using System;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 {
@@ -11,7 +14,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Id)
-                .HasColumnName("id");
+                .HasColumnName("id")
+                .ValueGeneratedNever();
 
             builder.Property(c => c.Date)
                 .HasColumnName("date")
@@ -29,9 +33,10 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
                 .IsRequired();
 
             builder.HasOne(p => p.Person)
-                .WithMany(b => b.Adresses)
+                .WithMany(b => b.Interviews)
                 .HasForeignKey("person_id")
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("fk_Interview_person");
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")

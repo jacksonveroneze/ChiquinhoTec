@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
+using ChiquinhoTec.GerenciadorContratacao.Domain.ValueObjects;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 {
@@ -11,7 +14,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Id)
-                .HasColumnName("id");
+                .HasColumnName("id")
+                .ValueGeneratedNever();
 
             builder.Property(e => e.Name)
                 .HasColumnName("name")

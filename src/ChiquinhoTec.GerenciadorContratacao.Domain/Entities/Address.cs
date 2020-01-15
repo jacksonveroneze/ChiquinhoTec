@@ -1,4 +1,5 @@
 ﻿using System;
+using ChiquinhoTec.GerenciadorContratacao.Common;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
 {
@@ -18,9 +19,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
 
         public string District { get; private set; }
 
-        public string Address { get; private set; }
+        public string Street { get; private set; }
 
-        public int AddressNumber { get; private set; }
+        public int StreetNumber { get; private set; }
 
         public string Complement { get; private set; }
 

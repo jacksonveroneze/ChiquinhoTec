@@ -1,4 +1,5 @@
 ﻿using System;
+using ChiquinhoTec.GerenciadorContratacao.Common;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
 {

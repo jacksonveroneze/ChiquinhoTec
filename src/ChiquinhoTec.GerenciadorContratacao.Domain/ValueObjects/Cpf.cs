@@ -1,4 +1,5 @@
 ﻿using System;
+using ChiquinhoTec.GerenciadorContratacao.Common;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Domain.ValueObjects
 {
@@ -22,5 +23,10 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.ValueObjects
         }
 
         public string Value { get; private set; }
+
+        protected override bool IsValid()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

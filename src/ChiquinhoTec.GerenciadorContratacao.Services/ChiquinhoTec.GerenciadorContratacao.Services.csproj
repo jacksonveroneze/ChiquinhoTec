@@ -4,4 +4,8 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.Common\ChiquinhoTec.GerenciadorContratacao.Common.csproj" />
+    <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.Domain\ChiquinhoTec.GerenciadorContratacao.Domain.csproj" />
+  </ItemGroup>
 </Project>

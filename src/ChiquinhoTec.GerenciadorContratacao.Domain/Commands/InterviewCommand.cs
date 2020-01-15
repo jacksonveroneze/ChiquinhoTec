@@ -1,4 +1,5 @@
 ﻿using System;
+using ChiquinhoTec.GerenciadorContratacao.Common;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
 {
@@ -6,7 +7,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
     // Summary:
     //     /// Class responsible for the command. ///
     //
-    public class InterviewCommand : BaseEntity
+    public class InterviewCommand : BaseCommand
     {
         public Guid Id { get; set; }
 

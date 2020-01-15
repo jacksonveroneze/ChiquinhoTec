@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChiquinhoTec.GerenciadorContratacao.Common;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories
 {
@@ -6,5 +7,5 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories
     // Summary:
     //     /// Interface responsible for contrat. ///
     //
-    public class IInterviewRepository : IBaseRepository<Interview> { }
+    public interface IInterviewRepository : IBaseRepository<Interview> { }
 }

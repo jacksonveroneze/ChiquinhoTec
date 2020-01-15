@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
+using ChiquinhoTec.GerenciadorContratacao.Common;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services
 {
@@ -6,7 +9,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services
     // Summary:
     //     /// Interface responsible for contrat. ///
     //
-    public class IPersonService : IBaseService
+    public interface IPersonService : IBaseService
     {
         Task<Person> AddAsync(PersonCommand command);
 

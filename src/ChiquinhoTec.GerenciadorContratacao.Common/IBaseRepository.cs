@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Common
 {
@@ -10,7 +12,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
     {
         Task AddAsync(T entity);
 
-        Task<T> FindAsync(Guid id);
+        ValueTask<T> FindAsync(Guid id);
 
         Task<List<T>> FindAllAsync();
 

@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Common
 {
@@ -40,7 +44,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
         //   id:
         //     The id param.
         //
-        public Task<T> FindAsync(Guid id)
+        public ValueTask<T> FindAsync(Guid id)
             => _context.FindAsync<T>(id);
 
         //

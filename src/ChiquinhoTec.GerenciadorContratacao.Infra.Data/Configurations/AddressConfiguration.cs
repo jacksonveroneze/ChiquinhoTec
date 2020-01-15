@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 {
@@ -11,7 +13,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
             builder.HasKey(e => e.Id);
 
             builder.Property(e => e.Id)
-                .HasColumnName("id");
+                .HasColumnName("id")
+                .ValueGeneratedNever();
 
             builder.Property(e => e.PostalCode)
                 .HasColumnName("postal_code")
@@ -28,13 +31,13 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
                 .HasColumnType("varchar(100)")
                 .IsRequired();
 
-            builder.Property(e => e.Address)
-                .HasColumnName("address")
+            builder.Property(e => e.Street)
+                .HasColumnName("street")
                 .HasColumnType("varchar(100)")
                 .IsRequired();
 
-            builder.Property(c => c.AddressNumber)
-                .HasColumnName("address_number")
+            builder.Property(c => c.StreetNumber)
+                .HasColumnName("street_number")
                 .HasColumnType("integer")
                 .IsRequired();
 
@@ -51,7 +54,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
             builder.HasOne(p => p.Person)
                 .WithMany(b => b.Adresses)
                 .HasForeignKey("person_id")
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("fk_adress_person");
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")

@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Services
 {
@@ -20,5 +24,20 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
         //
         public PersonService(IPersonRepository personRepository)
             => _personRepository = personRepository;
+
+        public Task<Person> AddAsync(PersonCommand command)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task RemoveAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Person> UpdateAsync(PersonCommand command, Guid id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

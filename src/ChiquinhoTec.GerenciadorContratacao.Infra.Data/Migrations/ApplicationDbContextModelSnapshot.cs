@@ -26,7 +26,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("City")
-                        .HasColumnType("text");
+                        .IsRequired()
+                        .HasColumnName("city")
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Complement")
                         .IsRequired()
@@ -53,9 +55,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                         .HasColumnName("is_active")
                         .HasColumnType("boolean")
                         .HasDefaultValueSql("true");
-
-                    b.Property<DateTime?>("LastSync")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
@@ -130,9 +129,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValueSql("true");
 
-                    b.Property<DateTime?>("LastSync")
-                        .HasColumnType("timestamp without time zone");
-
                     b.Property<TimeSpan>("Schedule")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("schedule")
@@ -173,7 +169,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("BirthDate")
-                        .HasColumnName("birthDate")
+                        .HasColumnName("birth_date")
                         .HasColumnType("date");
 
                     b.Property<DateTime>("CreatedAt")
@@ -191,9 +187,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                         .HasColumnName("is_active")
                         .HasColumnType("boolean")
                         .HasDefaultValueSql("true");
-
-                    b.Property<DateTime?>("LastSync")
-                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -246,7 +239,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                     b.HasOne("ChiquinhoTec.GerenciadorContratacao.Domain.Entities.Person", "Person")
                         .WithMany("Interviews")
                         .HasForeignKey("person_id")
-                        .HasConstraintName("fk_Interview_person")
+                        .HasConstraintName("fk_interview_person")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 
@@ -265,7 +258,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                             b1.HasKey("PersonId");
 
                             b1.HasIndex("Value")
-                                .IsUnique();
+                                .IsUnique()
+                                .HasName("uk_person_cpf");
 
                             b1.ToTable("person");
 
@@ -286,7 +280,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                             b1.HasKey("PersonId");
 
                             b1.HasIndex("Value")
-                                .IsUnique();
+                                .IsUnique()
+                                .HasName("uk_person_email");
 
                             b1.ToTable("person");
 

@@ -15,11 +15,10 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                     created_at = table.Column<DateTime>(type: "timestamptz", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
                     deleted_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
-                    LastSync = table.Column<DateTime>(nullable: true),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValueSql: "true"),
                     version = table.Column<int>(type: "integer", nullable: false, defaultValueSql: "1"),
                     name = table.Column<string>(type: "varchar(100)", nullable: false),
-                    birthDate = table.Column<DateTime>(type: "date", nullable: false),
+                    birth_date = table.Column<DateTime>(type: "date", nullable: false),
                     cpf = table.Column<string>(type: "varchar(11)", nullable: true),
                     phone = table.Column<string>(type: "varchar(20)", nullable: false),
                     email = table.Column<string>(type: "varchar(100)", nullable: true),
@@ -39,12 +38,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                     created_at = table.Column<DateTime>(type: "timestamptz", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
                     deleted_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
-                    LastSync = table.Column<DateTime>(nullable: true),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValueSql: "true"),
                     version = table.Column<int>(type: "integer", nullable: false, defaultValueSql: "1"),
                     postal_code = table.Column<string>(type: "varchar(9)", nullable: false),
                     state = table.Column<string>(type: "varchar(2)", nullable: false),
-                    City = table.Column<string>(nullable: true),
+                    city = table.Column<string>(type: "varchar(100)", nullable: false),
                     district = table.Column<string>(type: "varchar(100)", nullable: false),
                     street = table.Column<string>(type: "varchar(100)", nullable: false),
                     street_number = table.Column<int>(type: "integer", nullable: false),
@@ -71,7 +69,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                     created_at = table.Column<DateTime>(type: "timestamptz", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
                     deleted_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
-                    LastSync = table.Column<DateTime>(nullable: true),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValueSql: "true"),
                     version = table.Column<int>(type: "integer", nullable: false, defaultValueSql: "1"),
                     date = table.Column<DateTime>(type: "date", nullable: false, defaultValueSql: "null"),
@@ -83,7 +80,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                 {
                     table.PrimaryKey("PK_interview", x => x.id);
                     table.ForeignKey(
-                        name: "fk_Interview_person",
+                        name: "fk_interview_person",
                         column: x => x.person_id,
                         principalTable: "person",
                         principalColumn: "id",
@@ -101,13 +98,13 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                 column: "person_id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_person_cpf",
+                name: "uk_person_cpf",
                 table: "person",
                 column: "cpf",
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_person_email",
+                name: "uk_person_email",
                 table: "person",
                 column: "email",
                 unique: true);

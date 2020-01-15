@@ -1,7 +1,7 @@
 ﻿using System;
 using ChiquinhoTec.GerenciadorContratacao.Common;
 
-namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
+namespace ChiquinhoTec.GerenciadorContratacao.Domain.Commands
 {
     //
     // Summary:

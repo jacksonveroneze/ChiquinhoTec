@@ -15,7 +15,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
         //
         public PersonValidator()
         {
-
+            RuleFor(x => x.Name).NotEmpty().Length(2, 2);
+            RuleFor(x => x.Email).NotEmpty().EmailAddress();
         }
     }
 }

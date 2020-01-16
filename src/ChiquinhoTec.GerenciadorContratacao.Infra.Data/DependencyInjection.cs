@@ -9,9 +9,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("NorthwindDatabase")));
+                options.UseNpgsql(configuration.GetConnectionString("ApplicationDatabase")));
 
-            services.AddScoped<ApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
+            //services.AddScoped<ApplicationDbContext>(provider => provider.GetService<ApplicationDbContext>());
 
             return services;
         }

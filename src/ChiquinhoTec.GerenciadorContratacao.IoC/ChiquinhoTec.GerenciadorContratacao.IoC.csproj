@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.Domain\ChiquinhoTec.GerenciadorContratacao.Domain.csproj" />
+    <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.Infra.Data\ChiquinhoTec.GerenciadorContratacao.Infra.Data.csproj" />
+    <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.Services\ChiquinhoTec.GerenciadorContratacao.Services.csproj" />
+  </ItemGroup>
+</Project>

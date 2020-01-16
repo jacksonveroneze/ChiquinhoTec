@@ -31,9 +31,14 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
             throw new NotImplementedException();
         }
 
-        public Task RemoveAsync(Guid id)
+        public async Task RemoveAsync(Guid id)
         {
-            throw new NotImplementedException();
+            Person person = await _personRepository.FindAsync(id);
+
+            if(person is null)
+                throw new Exception("Registro não encontrado.");
+
+            await _personRepository.RemoveAsync(person);
         }
 
         public Task<Person> UpdateAsync(PersonCommand command, Guid id)

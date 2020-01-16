@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.12.0" />
+<<<<<<< HEAD
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
@@ -21,5 +22,7 @@
     <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.Domain\ChiquinhoTec.GerenciadorContratacao.Domain.csproj" />
     <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.Infra.Data\ChiquinhoTec.GerenciadorContratacao.Infra.Data.csproj" />
     <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.IoC\ChiquinhoTec.GerenciadorContratacao.IoC.csproj" />
+=======
+>>>>>>> 5ed12ce7731a6666817a6c9ea4700af3354d44e7
   </ItemGroup>
 </Project>

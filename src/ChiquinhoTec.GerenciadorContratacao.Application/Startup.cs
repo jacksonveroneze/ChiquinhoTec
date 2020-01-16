@@ -31,8 +31,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Application
 
             services.AddHealthChecks();
 
+<<<<<<< HEAD
             services.AddPersistence(Configuration);
 
+=======
+>>>>>>> 5ed12ce7731a6666817a6c9ea4700af3354d44e7
             services.AddApplicationInsightsTelemetry(Configuration);
         }
 

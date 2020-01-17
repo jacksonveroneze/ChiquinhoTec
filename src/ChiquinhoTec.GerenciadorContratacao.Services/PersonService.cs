@@ -4,6 +4,7 @@ using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
+using ChiquinhoTec.GerenciadorContratacao.Domain.ValueObjects;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Services
 {
@@ -26,9 +27,22 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
         public PersonService(IPersonRepository personRepository)
             => _personRepository = personRepository;
 
-        public Task<Person> AddAsync(PersonCommand command)
+        public async Task<Person> AddAsync(PersonCommand command)
         {
-            throw new NotImplementedException();
+            Cpf cpf = new Cpf(command.Cpf);
+            Email email = new Email(command.Email);
+
+if (await _userRepository.FindUsersByCpfAsync(command.Cpf) != null)
+            {
+                AddNotification("user", UserMessages.FOUND_CPF);
+                return null;
+            }
+
+            Person person = new Person(command.Name, command.BirthDate, cpf, command.Phone, email, command.Profile, command.ProfessionalDescription);
+
+            await _personRepository.AddAsync(person);
+
+            return person;
         }
 
         public async Task RemoveAsync(Guid id)

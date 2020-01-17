@@ -11,6 +11,19 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
     //    
     public class Person : BaseEntity
     {
+        public Person() {}
+
+        public Person(string name, DateTime birthDate, Cpf cpf, string phone, Email email, string profile, string professionalDescription) : base()
+        {
+            Name = name;
+            BirthDate = birthDate;
+            Cpf = cpf;
+            Phone = phone;
+            Email = email;
+            Profile = profile;
+            ProfessionalDescription = professionalDescription;
+        }
+
         public Guid Id { get; private set; } = Guid.NewGuid();
 
         public string Name { get; private set; }

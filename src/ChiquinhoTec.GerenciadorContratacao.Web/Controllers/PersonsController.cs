@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Web.Controllers
 {
+    [Authorize]
     public class PersonsController : Controller
     {
         private readonly ILogger<PersonsController> _logger;

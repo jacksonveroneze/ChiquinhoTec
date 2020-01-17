@@ -1,11 +1,15 @@
-using ChiquinhoTec.GerenciadorContratacao.Infra.Data;
-using ChiquinhoTec.GerenciadorContratacao.IoC;
-using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ChiquinhoTec.GerenciadorContratacao.IoC;
+using ChiquinhoTec.GerenciadorContratacao.Infra.Data;
+using Microsoft.AspNetCore.Hosting;
+using System;
+using ChiquinhoTec.GerenciadorContratacao.Web.Data;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Web
 {
@@ -25,13 +29,37 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web
             
             InjectorBootStrapper.RegisterServices(services, Configuration);
 
+            services.AddDbContext<IdentityApplicationDbContext>(options =>
+                options.UseSqlite(
+                    Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameworkStores<IdentityApplicationDbContext>();
+
+            services.Configure<IdentityOptions>(options =>
+                {
+                    // Password settings.
+                    //options.Password.RequireDigit = true;
+                    //options.Password.RequireLowercase = true;
+                    //options.Password.RequireNonAlphanumeric = true;
+                    //options.Password.RequireUppercase = true;
+                    options.Password.RequiredLength = 6;
+                    //options.Password.RequiredUniqueChars = 1;
+
+                    // Lockout settings.
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                    options.Lockout.MaxFailedAccessAttempts = 5;
+                    options.Lockout.AllowedForNewUsers = true;
+
+                    // User settings.
+                    options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                    options.User.RequireUniqueEmail = true;
+                });
+
             services.AddControllersWithViews();
-
+            services.AddRazorPages();
             services.AddHealthChecks();
-
             services.AddApplicationInsightsTelemetry(Configuration);
-
-            services.AddMvc(setup => {  }).AddFluentValidation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,11 +68,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -55,6 +83,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web
 
             app.UseHealthChecks("/check");
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -62,6 +91,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapRazorPages();
             });
         }
     }

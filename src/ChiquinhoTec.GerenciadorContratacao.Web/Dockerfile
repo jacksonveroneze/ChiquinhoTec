@@ -16,4 +16,4 @@ WORKDIR /application
 
 COPY --from=build-env /application/output .
 
-ENTRYPOINT ["dotnet", "JacksonVeroneze.Pharmacy.Api.dll"]
+ENTRYPOINT ["dotnet", "ChiquinhoTec.GerenciadorContratacao.Web.dll"]

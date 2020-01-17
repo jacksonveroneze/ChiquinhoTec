@@ -32,9 +32,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
             Cpf cpf = new Cpf(command.Cpf);
             Email email = new Email(command.Email);
 
-if (await _userRepository.FindUsersByCpfAsync(command.Cpf) != null)
+            if (await _personRepository.FindPersonByCpfAsync(command.Cpf) != null)
             {
-                AddNotification("user", UserMessages.FOUND_CPF);
                 return null;
             }
 

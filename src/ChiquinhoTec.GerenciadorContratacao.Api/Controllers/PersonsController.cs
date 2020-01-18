@@ -16,6 +16,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         private readonly ILogger<PersonsController> _logger;
         //
         private readonly IPersonRepository _personRepository;
+        private readonly IAddressRepository _addressRepository;
+        private readonly IInterviewRepository _interviewRepository;
         //
         private readonly IPersonService _personService;
 
@@ -30,13 +32,21 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //   personRepository:
         //     The personRepository param.
         //
+        //   addressRepository:
+        //     The addressRepository param.
+        //
+        //   interviewRepository:
+        //     The interviewRepository param.
+        //
         //   personService:
         //     The personService param.
         //
-        public PersonsController(ILogger<PersonsController> logger, IPersonRepository personRepository, IPersonService personService)
+        public PersonsController(ILogger<PersonsController> logger, IPersonRepository personRepository, IAddressRepository addressRepository, IInterviewRepository interviewRepository, IPersonService personService)
         {
             _logger = logger;
             _personRepository = personRepository;
+            _addressRepository = addressRepository;
+            _interviewRepository = interviewRepository;
             _personService = personService;
         }
 
@@ -50,6 +60,36 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
             _logger.LogInformation("Index");
 
             return Ok(await _personRepository.FindAllAsync());
+        }
+
+        //
+        // Summary:
+        //     /// Method responsible for action: index. ///
+        //
+        [HttpGet("{id}/Addresses")]
+        public async Task<IActionResult> Addresses(Guid? id)
+        {
+            if (id is null)
+                return NotFound();
+
+            _logger.LogInformation($"Endereços do paciente {id}");
+
+            return Ok(await _addressRepository.FindAddressesByPersonId((Guid)id));
+        }
+
+        //
+        // Summary:
+        //     /// Method responsible for action: index. ///
+        //
+        [HttpGet("{id}/Interviews")]
+        public async Task<IActionResult> Interviews(Guid? id)
+        {
+            if (id is null)
+                return NotFound();
+
+            _logger.LogInformation($"Entrevistas do paciente {id}");
+
+            return Ok(await _interviewRepository.FindInterviewsByPersonId((Guid)id));
         }
 
         //

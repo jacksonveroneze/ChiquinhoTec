@@ -17,15 +17,10 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
                 .HasColumnName("id")
                 .ValueGeneratedNever();
 
-            builder.Property(c => c.Date)
-                .HasColumnName("date")
-                .HasColumnType("date")
-                .HasDefaultValueSql("null");
-
-            builder.Property(c => c.Schedule)
-                .HasColumnName("schedule")
-                .HasColumnType("time")
-                .HasDefaultValueSql("null");
+            builder.Property(c => c.SchedulingDate)
+                .HasColumnName("scheduling_date")
+                .HasColumnType("timestamptz")
+                .IsRequired();
 
             builder.Property(e => e.Squad)
                 .HasColumnName("squad")

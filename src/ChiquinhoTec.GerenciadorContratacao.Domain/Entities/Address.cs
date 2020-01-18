@@ -9,6 +9,21 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
     //
     public class Address : BaseEntity
     {
+        public Address() {}
+
+        public Address(string postalCode, string state, string city, string district, string street, int streetNumber, string complement, bool primaryAddress, Person person)
+        {
+            PostalCode = postalCode;
+            State = state;
+            City = city;
+            District = district;
+            Street = street;
+            StreetNumber = streetNumber;
+            Complement = complement;
+            PrimaryAddress = primaryAddress;
+            Person = person;
+        }
+
         public string PostalCode { get; private set; }
 
         public string State { get; private set; }

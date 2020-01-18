@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200115152950_Initial")]
+    [Migration("20200118200104_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -113,12 +113,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                         .HasColumnName("created_at")
                         .HasColumnType("timestamptz");
 
-                    b.Property<DateTime>("Date")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("date")
-                        .HasColumnType("date")
-                        .HasDefaultValueSql("null");
-
                     b.Property<DateTime?>("DeletedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("deleted_at")
@@ -131,11 +125,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                         .HasColumnType("boolean")
                         .HasDefaultValueSql("true");
 
-                    b.Property<TimeSpan>("Schedule")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("schedule")
-                        .HasColumnType("time")
-                        .HasDefaultValueSql("null");
+                    b.Property<DateTime>("SchedulingDate")
+                        .HasColumnName("scheduling_date")
+                        .HasColumnType("timestamptz");
 
                     b.Property<string>("Squad")
                         .IsRequired()

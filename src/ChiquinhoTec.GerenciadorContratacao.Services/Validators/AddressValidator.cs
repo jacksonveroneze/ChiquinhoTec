@@ -1,4 +1,6 @@
 ﻿using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using FluentValidation;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
@@ -13,8 +15,13 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
         // Summary:
         //     /// Method responsible for initializing the validator. ///
         //
-        public AddressValidator()
+        // Parameters:
+        //   personRepository:
+        //     The personRepository param.
+        //
+        public AddressValidator(IPersonRepository personRepository)
         {
+
             RuleFor(x => x.PostalCode).NotEmpty();
             RuleFor(x => x.State).NotEmpty().Length(2, 2);
             RuleFor(x => x.City).NotEmpty().MaximumLength(100);
@@ -22,6 +29,15 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
             RuleFor(x => x.Street).NotEmpty().MaximumLength(100);
             RuleFor(x => x.StreetNumber).NotEmpty();
             RuleFor(x => x.PersonId).NotEmpty();
+
+            RuleFor(x => x.PersonId)
+            .NotEmpty()
+            .MustAsync(async (x, c) =>
+            {
+                Person person = await personRepository.FindAsync(x);
+
+                return person != null;
+            }).WithMessage("PersonId não localizado.");
         }
     }
 }

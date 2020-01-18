@@ -9,9 +9,16 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
     //    
     public class Interview : BaseEntity
     {
-        public DateTime Date { get; private set; }
+        public Interview() { }
 
-        public TimeSpan Schedule { get; private set; }
+        public Interview(DateTime schedulingDate, string squad, Person person)
+        {
+            SchedulingDate = SchedulingDate;
+            Squad = squad;
+            Person = person;
+        }
+
+        public DateTime SchedulingDate { get; private set; }
 
         public string Squad { get; private set; }
 

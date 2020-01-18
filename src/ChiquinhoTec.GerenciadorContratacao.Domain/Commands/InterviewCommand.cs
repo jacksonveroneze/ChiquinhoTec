@@ -11,9 +11,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Commands
     {
         public Guid Id { get; set; }
 
-        public DateTime Date { get; set; }
-
-        public TimeSpan Schedule { get; set; }
+        public DateTime SchedulingDate { get; set; }
 
         public string Squad { get; set; }
 

@@ -71,8 +71,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                     deleted_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValueSql: "true"),
                     version = table.Column<int>(type: "integer", nullable: false, defaultValueSql: "1"),
-                    date = table.Column<DateTime>(type: "date", nullable: false, defaultValueSql: "null"),
-                    schedule = table.Column<TimeSpan>(type: "time", nullable: false, defaultValueSql: "null"),
+                    scheduling_date = table.Column<DateTime>(type: "timestamptz", nullable: false),
                     squad = table.Column<string>(type: "varchar(100)", nullable: false),
                     person_id = table.Column<Guid>(nullable: true)
                 },

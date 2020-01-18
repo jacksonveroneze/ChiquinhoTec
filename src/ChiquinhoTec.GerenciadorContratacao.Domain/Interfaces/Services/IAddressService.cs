@@ -14,8 +14,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services
     {
         Task<Address> AddAsync(AddressCommand command);
 
-        Task RemoveAsync(Guid id);
-
-        Task<Address> UpdateAsync(AddressCommand command, Guid id);
+        Task<bool> RemoveAsync(Guid id);
     }
 }

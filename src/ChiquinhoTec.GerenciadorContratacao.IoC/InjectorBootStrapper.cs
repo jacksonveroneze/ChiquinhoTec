@@ -29,6 +29,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.IoC
             //
             // Inject Validators
             //
+            services.AddTransient<IValidator<AddressCommand>>(x => new AddressValidator(x.GetRequiredService<IPersonRepository>()));
+            services.AddTransient<IValidator<InterviewCommand>>(x => new InterviewValidator(x.GetRequiredService<IPersonRepository>()));
             services.AddTransient<IValidator<PersonCommand>>(x => new PersonValidator(x.GetRequiredService<IPersonRepository>()));
         }
     }

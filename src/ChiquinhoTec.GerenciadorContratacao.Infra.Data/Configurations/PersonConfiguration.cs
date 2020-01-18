@@ -62,6 +62,12 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
                 .HasColumnType("varchar(100)")
                 .IsRequired();
 
+            builder.HasMany(c => c.Adresses)
+                .WithOne(e => e.Person);
+
+            builder.HasMany(c => c.Interviews)
+                .WithOne(e => e.Person);
+
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")
                 .HasColumnType("timestamptz")

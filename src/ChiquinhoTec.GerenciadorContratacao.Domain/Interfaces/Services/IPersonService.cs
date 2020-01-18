@@ -15,7 +15,5 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services
         Task<Person> AddAsync(PersonCommand command);
 
         Task<bool> RemoveAsync(Guid id);
-
-        //Task<Person> UpdateAsync(PersonCommand command, Guid id);
     }
 }

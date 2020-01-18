@@ -5,6 +5,8 @@ using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Services
 {
@@ -15,6 +17,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
     public class AddressService : BaseService, IAddressService
     {
         private readonly IAddressRepository _addressRepository;
+        private readonly IPersonRepository _personRepository;
+        //
+        private readonly IValidator<AddressCommand> _addressValidator;
 
         //
         // Summary:
@@ -24,22 +29,65 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
         //   addressRepository:
         //     The addressRepository param.
         //
-        public AddressService(IAddressRepository addressRepository)
-            => _addressRepository = addressRepository;
-
-        public Task<Address> AddAsync(AddressCommand command)
+        //   personRepository:
+        //     The personRepository param.
+        //
+        //   addressValidator:
+        //     The addressValidator param.
+        //
+        public AddressService(IAddressRepository addressRepository, IPersonRepository personRepository, IValidator<AddressCommand> addressValidator)
         {
-            throw new NotImplementedException();
+            _addressRepository = addressRepository;
+            _personRepository = personRepository;
+            _addressValidator = addressValidator;
         }
 
-        public Task RemoveAsync(Guid id)
+        //
+        // Summary:
+        //     /// Method responsible for create address. ///
+        //
+        // Parameters:
+        //   command:
+        //     The command param.
+        //
+        public async Task<Address> AddAsync(AddressCommand command)
         {
-            throw new NotImplementedException();
+            _validationResult = await _addressValidator.ValidateAsync(command);
+
+            if (_validationResult.IsValid is false)
+                return null;
+
+            Person person = await _personRepository.FindAsync(command.PersonId);
+
+            Address address = new Address(command.PostalCode, command.State, command.City, command.District, command.Street, command.StreetNumber, command.Complement, command.PrimaryAddress, person);
+
+            await _addressRepository.AddAsync(address);
+
+            return address;
         }
 
-        public Task<Address> UpdateAsync(AddressCommand command, Guid id)
+        //
+        // Summary:
+        //     /// Method responsible for remove address. ///
+        //
+        // Parameters:
+        //   id:
+        //     The id param.
+        //
+        public async Task<bool> RemoveAsync(Guid id)
         {
-            throw new NotImplementedException();
+            Address address = await _addressRepository.FindAsync(id);
+
+            if (address is null)
+            {
+                _validationResult.Errors.Add(new ValidationFailure("Id", "Registro não encontrado."));
+
+                return false;
+            }
+
+            await _addressRepository.RemoveAsync(address);
+
+            return true;
         }
     }
 }

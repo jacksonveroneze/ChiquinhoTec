@@ -11,8 +11,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
     //
     public class PersonValidator : AbstractValidator<PersonCommand>
     {
-        private readonly IPersonRepository _personRepository;
-
         //
         // Summary:
         //     /// Method responsible for initializing the validator. ///
@@ -23,8 +21,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
         //
         public PersonValidator(IPersonRepository personRepository)
         {
-            _personRepository = personRepository;
-
             RuleFor(x => x.Name).NotEmpty();
 
             RuleFor(x => x.Email)
@@ -32,7 +28,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
                 .EmailAddress()
                 .MustAsync(async (x, c) =>
                 {
-                    Person person = await _personRepository.FindPersonByEmailAsync(x);
+                    Person person = await personRepository.FindPersonByEmailAsync(x);
 
                     return person is null;
                 }).WithMessage("E-mail já encontra-se cadastrado.");
@@ -42,7 +38,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
                 .Must(ValidCpf).WithMessage("CPF inválido.")
                 .MustAsync(async (x, c) =>
                {
-                   Person person = await _personRepository.FindPersonByCpfAsync(x);
+                   Person person = await personRepository.FindPersonByCpfAsync(x);
 
                    return person is null;
                }).WithMessage("CPF já encontra-se cadastrado.");

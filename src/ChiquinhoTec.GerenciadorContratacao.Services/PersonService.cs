@@ -18,6 +18,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
     public class PersonService : BaseService, IPersonService
     {
         private readonly IPersonRepository _personRepository;
+        private readonly IAddressRepository _addressRepository;
+        private readonly IInterviewRepository _interviewRepository;
+        //
         private readonly IValidator<PersonCommand> _personValidator;
 
         //
@@ -28,9 +31,20 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
         //   personRepository:
         //     The personRepository param.
         //
-        public PersonService(IPersonRepository personRepository, IValidator<PersonCommand> personValidator)
+        //   addressRepository:
+        //     The addressRepository param.
+        //
+        //   interviewRepository:
+        //     The interviewRepository param.
+        //
+        //   personValidator:
+        //     The personValidator param.
+        //
+        public PersonService(IPersonRepository personRepository, IAddressRepository addressRepository, IInterviewRepository interviewRepository, IValidator<PersonCommand> personValidator)
         {
             _personRepository = personRepository;
+            _addressRepository = addressRepository;
+            _interviewRepository = interviewRepository;
             _personValidator = personValidator;
         }
 
@@ -71,9 +85,16 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
             if (person is null)
             {
                 _validationResult.Errors.Add(new ValidationFailure("Id", "Registro não encontrado."));
-
-                return false;
             }
+
+            if (_addressRepository.HasAddressesByPersonId(id))
+                _validationResult.Errors.Add(new ValidationFailure("Id", "Esta pessoa possue endereços ativos, portanto não pode ser removida."));
+
+            if (_interviewRepository.HasInterviewsByPersonId(id))
+                _validationResult.Errors.Add(new ValidationFailure("Id", "Esta pessoa possue entrevistas ativas, portanto não pode ser removida."));
+
+            if (_validationResult.IsValid is false)
+                return false;
 
             await _personRepository.RemoveAsync(person);
 

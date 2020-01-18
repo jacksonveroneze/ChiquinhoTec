@@ -1,4 +1,4 @@
-﻿using System;
+﻿using FluentValidation.Results;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Common
 {
@@ -6,5 +6,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
     // Summary:
     //     /// Interface responsible for contrat(IBaseService). ///
     //
-    public interface IBaseService { }
+    public interface IBaseService 
+    {
+        ValidationResult ValidationResult();
+    }
 }

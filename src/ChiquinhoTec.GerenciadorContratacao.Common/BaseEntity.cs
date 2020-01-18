@@ -8,6 +8,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
     //
     public abstract class BaseEntity : IBaseEntity
     {
+        public Guid Id { get; private set; } = Guid.NewGuid();
+
         public DateTime CreatedAt { get; private set; }
 
         public DateTime? UpdatedAt { get; set; } = null;

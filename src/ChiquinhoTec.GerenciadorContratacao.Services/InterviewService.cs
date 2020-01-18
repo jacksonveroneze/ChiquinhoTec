@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using ChiquinhoTec.GerenciadorContratacao.Common;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
@@ -11,7 +12,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
     // Summary:
     //     /// Class responsible for the service. ///
     //
-    public class InterviewService : IInterviewService
+    public class InterviewService : BaseService, IInterviewService
     {
         private readonly IInterviewRepository _interviewRepository;
 

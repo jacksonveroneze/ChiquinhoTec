@@ -23,19 +23,35 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Repositories
         //
         public PersonRepository(ApplicationDbContext context) : base(context) { }
 
+        //
+        // Summary:
+        //     /// Method responsible for searching the data. ///
+        //
+        // Parameters:
+        //   id:
+        //     The id param.
+        //
         public async Task<Person> FindPersonByCpfAsync(string value)
         {
             return await _context
                     .Set<Person>()
-                    .Where(x => x.Cpf.Value == value)
+                    .Where(x => x.Cpf.Value == value && x.IsActive == true)
                     .FirstOrDefaultAsync();
         }
 
+        //
+        // Summary:
+        //     /// Method responsible for searching the data. ///
+        //
+        // Parameters:
+        //   id:
+        //     The id param.
+        //
         public async Task<Person> FindPersonByEmailAsync(string value)
         {
             return await _context
                     .Set<Person>()
-                    .Where(x => x.Email.Value == value)
+                    .Where(x => x.Email.Value == value && x.IsActive == true)
                     .FirstOrDefaultAsync();
         }
     }

@@ -12,7 +12,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
     {
         Task AddAsync(T entity);
 
-        ValueTask<T> FindAsync(Guid id);
+        Task<T> FindAsync(Guid id);
 
         Task<List<T>> FindAllAsync();
 

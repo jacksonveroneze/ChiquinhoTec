@@ -13,7 +13,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
         public TContext CreateDbContext(string[] args)
         {
-            var basePath = Directory.GetCurrentDirectory() + string.Format("{0}..{0}ChiquinhoTec.GerenciadorContratacao.Web", Path.DirectorySeparatorChar);
+            var basePath = Directory.GetCurrentDirectory() + string.Format("{0}..{0}ChiquinhoTec.GerenciadorContratacao.Api", Path.DirectorySeparatorChar);
             return Create(basePath, Environment.GetEnvironmentVariable(AspNetCoreEnvironment));
         }
 

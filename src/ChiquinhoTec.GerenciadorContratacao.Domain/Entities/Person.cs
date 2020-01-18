@@ -24,8 +24,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
             ProfessionalDescription = professionalDescription;
         }
 
-        public Guid Id { get; private set; } = Guid.NewGuid();
-
         public string Name { get; private set; }
 
         public DateTime BirthDate { get; private set; }

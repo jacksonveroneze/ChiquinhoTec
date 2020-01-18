@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
 using ChiquinhoTec.GerenciadorContratacao.Domain.ValueObjects;
+using ChiquinhoTec.GerenciadorContratacao.Services.Validators;
+using FluentValidation;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Services
 {
@@ -14,7 +17,10 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
     //
     public class PersonService : IPersonService
     {
+        public IList<string> listErrors = new List<string>();
+
         private readonly IPersonRepository _personRepository;
+        private readonly IValidator<PersonCommand> _personValidator;
 
         //
         // Summary:
@@ -24,20 +30,26 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
         //   personRepository:
         //     The personRepository param.
         //
-        public PersonService(IPersonRepository personRepository)
-            => _personRepository = personRepository;
+        public PersonService(IPersonRepository personRepository, IValidator<PersonCommand> personValidator)
+        {
+            _personRepository = personRepository;
+            _personValidator = personValidator;
+        }
 
         public async Task<Person> AddAsync(PersonCommand command)
         {
-            Cpf cpf = new Cpf(command.Cpf);
-            Email email = new Email(command.Email);
+            var result = _personValidator.Validate(command);
 
-            if (await _personRepository.FindPersonByCpfAsync(command.Cpf) != null)
-            {
-                return null;
-            }
+            // if (await _personRepository.FindPersonByCpfAsync(command.Cpf) != null)
+            //     listErrors.Add("CPF já cadastrado.");
 
-            Person person = new Person(command.Name, command.BirthDate, cpf, command.Phone, email, command.Profile, command.ProfessionalDescription);
+            // if (await _personRepository.FindPersonByEmailAsync(command.Email) != null)
+            //     listErrors.Add("E-mail já cadastrado.");
+
+            // if(listErrors.Count > 0)
+            //     return null;
+
+            Person person = new Person(command.Name, command.BirthDate, new Cpf(command.Cpf), command.Phone, new Email(command.Email), command.Profile, command.ProfessionalDescription);
 
             await _personRepository.AddAsync(person);
 
@@ -48,7 +60,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
         {
             Person person = await _personRepository.FindAsync(id);
 
-            if(person is null)
+            if (person is null)
                 throw new Exception("Registro não encontrado.");
 
             await _personRepository.RemoveAsync(person);

@@ -10,6 +10,14 @@
 
 <hr />
 
+
+@if (ViewData.ContainsKey("Errors") && !string.IsNullOrEmpty(ViewData["Errors"].ToString()))
+{
+    <p>
+        <strong>Request ID:</strong> <code>@ViewData["Errors"]</code>
+    </p>
+}
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">

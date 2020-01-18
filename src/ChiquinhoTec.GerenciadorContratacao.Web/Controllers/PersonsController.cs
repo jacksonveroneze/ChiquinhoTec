@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -45,10 +46,17 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] PersonCommand command)
         {
+        //ModelState.AddModelError("Email", "Email Already Exists"); 
+        //ViewBag.ErrorMessage = "Email Already Exists";
+
+        ViewData["Errors"] = "Error";
+
             if (ModelState.IsValid)
             {
-                await _personService.AddAsync(command);
-                return RedirectToAction(nameof(Index));
+                Person person = await _personService.AddAsync(command);
+
+                if(person is null)
+                    ViewBag.ErrorMessage = "Email Already Exists";
             }
 
             return View(command);
@@ -57,6 +65,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web.Controllers
         // GET: People/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
+            
             if (id is null)
                 return NotFound();
 

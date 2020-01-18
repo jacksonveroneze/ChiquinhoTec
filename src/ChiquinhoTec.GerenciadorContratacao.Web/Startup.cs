@@ -10,6 +10,7 @@ using ChiquinhoTec.GerenciadorContratacao.Infra.Data;
 using Microsoft.AspNetCore.Hosting;
 using System;
 using ChiquinhoTec.GerenciadorContratacao.Web.Data;
+using FluentValidation.AspNetCore;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Web
 {
@@ -55,6 +56,10 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web
                     options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                     options.User.RequireUniqueEmail = true;
                 });
+
+            // services.AddMvc(setup => {
+            //     //...mvc setup...
+            //     }).AddFluentValidation();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

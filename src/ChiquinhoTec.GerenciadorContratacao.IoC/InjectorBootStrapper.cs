@@ -37,7 +37,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.IoC
             services.AddTransient<IInterviewRepository, InterviewRepository>();
             services.AddTransient<IPersonRepository, PersonRepository>();
             //
-            services.AddTransient<IValidator<PersonCommand>, PersonValidator>();
+            services.AddTransient<IValidator<PersonCommand>>(x => new PersonValidator(x.GetRequiredService<IPersonRepository>()));
         }
     }
 }

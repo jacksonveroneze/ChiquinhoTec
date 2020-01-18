@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
+﻿using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
+using System.Threading.Tasks;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Web.Controllers
 {
@@ -20,6 +18,20 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web.Controllers
         //
         private readonly IPersonService _personService;
 
+        //
+        // Summary:
+        //     /// Method responsible for initializing the controller. ///
+        //
+        // Parameters:
+        //   logger:
+        //     The logger param.
+        //
+        //   personRepository:
+        //     The personRepository param.
+        //
+        //   personService:
+        //     The personService param.
+        //
         public PersonsController(ILogger<PersonsController> logger, IPersonRepository personRepository, IPersonService personService)
         {
             _logger = logger;
@@ -27,13 +39,21 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web.Controllers
             _personService = personService;
         }
 
+        //
+        // Summary:
+        //     /// Method responsible for action: index. ///
+        //
         public async Task<IActionResult> Index()
         {
             _logger.LogInformation("Index");
 
             return View(await _personRepository.FindAllAsync());
         }
-        
+
+        //
+        // Summary:
+        //     /// Method responsible for action: Create(GET). ///
+        //
         public IActionResult Create()
         {
             _logger.LogInformation("Create");
@@ -41,6 +61,10 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web.Controllers
             return View();
         }
 
+        //
+        // Summary:
+        //     /// Method responsible for action: Create(POST). ///
+        //
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([FromForm] PersonCommand command)
@@ -48,13 +72,17 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web.Controllers
             if (ModelState.IsValid)
             {
                 await _personService.AddAsync(command);
+
                 return RedirectToAction(nameof(Index));
             }
 
             return View(command);
         }
 
-        // GET: People/Delete/5
+        //
+        // Summary:
+        //     /// Method responsible for action: Delete. ///
+        //
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id is null)

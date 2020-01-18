@@ -27,6 +27,14 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
         public PersonService(IPersonRepository personRepository)
             => _personRepository = personRepository;
 
+        //
+        // Summary:
+        //     /// Method responsible for create person. ///
+        //
+        // Parameters:
+        //   command:
+        //     The command param.
+        //
         public async Task<Person> AddAsync(PersonCommand command)
         {
             Cpf cpf = new Cpf(command.Cpf);
@@ -44,6 +52,14 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
             return person;
         }
 
+        //
+        // Summary:
+        //     /// Method responsible for remove person. ///
+        //
+        // Parameters:
+        //   id:
+        //     The id param.
+        //
         public async Task RemoveAsync(Guid id)
         {
             Person person = await _personRepository.FindAsync(id);
@@ -52,11 +68,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
                 throw new Exception("Registro não encontrado.");
 
             await _personRepository.RemoveAsync(person);
-        }
-
-        public Task<Person> UpdateAsync(PersonCommand command, Guid id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

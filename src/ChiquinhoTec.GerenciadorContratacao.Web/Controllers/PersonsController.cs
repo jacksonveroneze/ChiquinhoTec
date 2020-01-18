@@ -1,4 +1,5 @@
-﻿using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Web.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class PersonsController : Controller
     {
         private readonly ILogger<PersonsController> _logger;
@@ -47,7 +48,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web.Controllers
         {
             _logger.LogInformation("Index");
 
-            return View(await _personRepository.FindAllAsync());
+            return Ok(await _personRepository.FindAllAsync());
         }
 
         //
@@ -66,12 +67,19 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web.Controllers
         //     /// Method responsible for action: Create(POST). ///
         //
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([FromForm] PersonCommand command)
+        public async Task<IActionResult> Create([FromBody] PersonCommand command)
         {
+        //ModelState.AddModelError("Email", "Email Already Exists"); 
+        //ViewBag.ErrorMessage = "Email Already Exists";
+
+        ViewData["Errors"] = "Error";
+
             if (ModelState.IsValid)
             {
-                await _personService.AddAsync(command);
+                Person person = await _personService.AddAsync(command);
+
+                if(person is null)
+                    ViewBag.ErrorMessage = "Email Already Exists";
 
                 return RedirectToAction(nameof(Index));
             }
@@ -85,6 +93,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web.Controllers
         //
         public async Task<IActionResult> Delete(Guid? id)
         {
+            
             if (id is null)
                 return NotFound();
 

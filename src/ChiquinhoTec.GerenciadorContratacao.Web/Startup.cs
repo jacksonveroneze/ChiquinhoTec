@@ -1,15 +1,14 @@
+using ChiquinhoTec.GerenciadorContratacao.Infra.Data;
+using ChiquinhoTec.GerenciadorContratacao.IoC;
+using ChiquinhoTec.GerenciadorContratacao.Web.Data;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ChiquinhoTec.GerenciadorContratacao.IoC;
-using ChiquinhoTec.GerenciadorContratacao.Infra.Data;
-using Microsoft.AspNetCore.Hosting;
 using System;
-using ChiquinhoTec.GerenciadorContratacao.Web.Data;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Web
 {
@@ -31,7 +30,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web
 
             services.AddDbContext<IdentityApplicationDbContext>(options =>
                 options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("IdentityDatabase")));
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<IdentityApplicationDbContext>();
@@ -39,12 +38,12 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web
             services.Configure<IdentityOptions>(options =>
                 {
                     // Password settings.
-                    //options.Password.RequireDigit = true;
-                    //options.Password.RequireLowercase = true;
-                    //options.Password.RequireNonAlphanumeric = true;
-                    //options.Password.RequireUppercase = true;
+                    options.Password.RequireDigit = true;
+                    options.Password.RequireLowercase = true;
+                    options.Password.RequireNonAlphanumeric = true;
+                    options.Password.RequireUppercase = true;
                     options.Password.RequiredLength = 6;
-                    //options.Password.RequiredUniqueChars = 1;
+                    options.Password.RequiredUniqueChars = 1;
 
                     // Lockout settings.
                     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
@@ -55,6 +54,10 @@ namespace ChiquinhoTec.GerenciadorContratacao.Web
                     options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                     options.User.RequireUniqueEmail = true;
                 });
+
+            // services.AddMvc(setup => {
+            //     //...mvc setup...
+            //     }).AddFluentValidation();
 
             services.AddControllersWithViews();
             services.AddRazorPages();

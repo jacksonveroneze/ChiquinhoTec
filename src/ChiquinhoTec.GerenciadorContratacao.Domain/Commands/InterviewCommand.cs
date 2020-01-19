@@ -1,5 +1,6 @@
 ﻿using System;
 using ChiquinhoTec.GerenciadorContratacao.Common;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Enums;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Domain.Commands
 {
@@ -9,11 +10,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Commands
     //
     public class InterviewCommand : BaseCommand
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
         public DateTime SchedulingDate { get; set; }
 
-        public string Squad { get; set; }
+        public Squads Squad { get; set; }
 
         public Guid PersonId { get; set; }
     }

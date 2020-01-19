@@ -8,10 +8,30 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "entity_audit",
+                columns: table => new
+                {
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
+                    created_at = table.Column<DateTime>(type: "timestamptz", nullable: false),
+                    updated_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
+                    deleted_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
+                    is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValueSql: "true"),
+                    version = table.Column<int>(type: "integer", nullable: false, defaultValueSql: "1"),
+                    rev = table.Column<string>(type: "varchar(3)", nullable: false),
+                    entity_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    name = table.Column<string>(type: "varchar(100)", nullable: false),
+                    content = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_entity_audit", x => x.id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "person",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamptz", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
                     deleted_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
@@ -34,7 +54,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                 name: "address",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamptz", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
                     deleted_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
@@ -46,15 +66,15 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                     district = table.Column<string>(type: "varchar(100)", nullable: false),
                     street = table.Column<string>(type: "varchar(100)", nullable: false),
                     street_number = table.Column<int>(type: "integer", nullable: false),
-                    complement = table.Column<string>(type: "varchar(100)", nullable: false),
+                    complement = table.Column<string>(type: "varchar(100)", nullable: true),
                     primary_address = table.Column<bool>(type: "boolean", nullable: false),
-                    person_id = table.Column<Guid>(nullable: true)
+                    person_id = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_address", x => x.id);
                     table.ForeignKey(
-                        name: "fk_adress_person",
+                        name: "FK_address_person_person_id",
                         column: x => x.person_id,
                         principalTable: "person",
                         principalColumn: "id",
@@ -65,21 +85,21 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                 name: "interview",
                 columns: table => new
                 {
-                    id = table.Column<Guid>(nullable: false),
+                    id = table.Column<Guid>(type: "uuid", nullable: false),
                     created_at = table.Column<DateTime>(type: "timestamptz", nullable: false),
                     updated_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
                     deleted_at = table.Column<DateTime>(type: "timestamptz", nullable: true, defaultValueSql: "null"),
                     is_active = table.Column<bool>(type: "boolean", nullable: false, defaultValueSql: "true"),
                     version = table.Column<int>(type: "integer", nullable: false, defaultValueSql: "1"),
                     scheduling_date = table.Column<DateTime>(type: "timestamptz", nullable: false),
-                    squad = table.Column<string>(type: "varchar(100)", nullable: false),
-                    person_id = table.Column<Guid>(nullable: true)
+                    squad = table.Column<int>(type: "integer", nullable: false),
+                    person_id = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_interview", x => x.id);
                     table.ForeignKey(
-                        name: "fk_interview_person",
+                        name: "FK_interview_person_person_id",
                         column: x => x.person_id,
                         principalTable: "person",
                         principalColumn: "id",
@@ -97,22 +117,23 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                 column: "person_id");
 
             migrationBuilder.CreateIndex(
-                name: "uk_person_cpf",
+                name: "IX_person_cpf",
                 table: "person",
-                column: "cpf",
-                unique: true);
+                column: "cpf");
 
             migrationBuilder.CreateIndex(
-                name: "uk_person_email",
+                name: "IX_person_email",
                 table: "person",
-                column: "email",
-                unique: true);
+                column: "email");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "address");
+
+            migrationBuilder.DropTable(
+                name: "entity_audit");
 
             migrationBuilder.DropTable(
                 name: "interview");

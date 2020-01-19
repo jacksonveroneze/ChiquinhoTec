@@ -13,7 +13,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories
     public interface IAddressRepository : IBaseRepository<Address>
     {
         Task<List<Address>> FindAddressesByPersonId(Guid personId);
-     
+
+        Task<Address> FindCurrentPrimaryAddressByPersonId(Guid personId);
+
         bool HasAddressesByPersonId(Guid personId);
     }
 }

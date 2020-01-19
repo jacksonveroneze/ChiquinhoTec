@@ -56,6 +56,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
         {
             entity.IncrementVersion();
 
+            entity.UpdatedAt = DateTime.Now;
+
             _context.Set<T>().Update(entity);
 
             await _context.SaveChangesAsync();

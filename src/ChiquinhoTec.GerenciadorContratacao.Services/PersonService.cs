@@ -21,6 +21,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
         private readonly IAddressRepository _addressRepository;
         private readonly IInterviewRepository _interviewRepository;
         //
+        private readonly IEntityAuditService _entityAuditService;
+        //
         private readonly IValidator<PersonCommand> _personValidator;
 
         //
@@ -37,20 +39,24 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
         //   interviewRepository:
         //     The interviewRepository param.
         //
+        //   entityAuditService:
+        //     The entityAuditService param.
+        //
         //   personValidator:
         //     The personValidator param.
         //
-        public PersonService(IPersonRepository personRepository, IAddressRepository addressRepository, IInterviewRepository interviewRepository, IValidator<PersonCommand> personValidator)
+        public PersonService(IPersonRepository personRepository, IAddressRepository addressRepository, IInterviewRepository interviewRepository, IEntityAuditService entityAuditService, IValidator<PersonCommand> personValidator)
         {
             _personRepository = personRepository;
             _addressRepository = addressRepository;
             _interviewRepository = interviewRepository;
+            _entityAuditService = entityAuditService;
             _personValidator = personValidator;
         }
 
         //
         // Summary:
-        //     /// Method responsible for create person. ///
+        //     /// Method responsible for create registry. ///
         //
         // Parameters:
         //   command:
@@ -67,12 +73,14 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
 
             await _personRepository.AddAsync(person);
 
+            await _entityAuditService.AddAsync("INS", nameof(Person), person);
+
             return person;
         }
 
         //
         // Summary:
-        //     /// Method responsible for remove person. ///
+        //     /// Method responsible for remove registry. ///
         //
         // Parameters:
         //   id:
@@ -99,6 +107,35 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services
             await _personRepository.RemoveAsync(person);
 
             return true;
+        }
+
+        //
+        // Summary:
+        //     /// Method responsible for update registry. ///
+        //
+        // Parameters:
+        //   command:
+        //     The command param.
+        //
+        //   id:
+        //     The id param.
+        //
+        public async Task<Person> UpdateAsync(PersonCommand command, Guid id)
+        {
+            _validationResult = await _personValidator.ValidateAsync(command);
+
+            if (_validationResult.IsValid is false)
+                return null;
+
+            Person person = await _personRepository.FindAsync(id);
+
+            person.Update(command.Name, command.BirthDate, new Cpf(command.Cpf), command.Phone, new Email(command.Email), command.Profile, command.ProfessionalDescription);
+
+            await _personRepository.UpdateAsync(person);
+
+            await _entityAuditService.AddAsync("UPD", nameof(Person), person);
+
+            return person;
         }
     }
 }

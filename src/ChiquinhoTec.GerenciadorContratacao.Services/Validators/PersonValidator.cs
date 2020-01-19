@@ -26,22 +26,40 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
             RuleFor(x => x.Email)
                 .NotEmpty()
                 .EmailAddress()
-                .MustAsync(async (x, c) =>
+                .MustAsync(async (request, val, token) =>
                 {
-                    Person person = await personRepository.FindPersonByEmailAsync(x);
+                    Person person = await personRepository.FindPersonByEmailAsync(val);
 
-                    return person is null;
+                    if (person is null)
+                        return true;
+
+                    if (request.Id is null)
+                        return false;
+
+                    if (request.Id != null && person.Id == request.Id)
+                        return true;
+
+                    return false;
                 }).WithMessage("E-mail já encontra-se cadastrado.");
 
             RuleFor(x => x.Cpf)
                 .NotEmpty()
                 .Must(ValidCpf).WithMessage("CPF inválido.")
-                .MustAsync(async (x, c) =>
-               {
-                   Person person = await personRepository.FindPersonByCpfAsync(x);
+                .MustAsync(async (request, val, token) =>
+                {
+                   Person person = await personRepository.FindPersonByCpfAsync(val);
 
-                   return person is null;
-               }).WithMessage("CPF já encontra-se cadastrado.");
+                    if (person is null)
+                        return true;
+
+                    if (request.Id is null)
+                        return false;
+
+                    if (request.Id != null && person.Id == request.Id)
+                        return true;
+
+                    return false;
+                }).WithMessage("CPF já encontra-se cadastrado.");
         }
 
         //

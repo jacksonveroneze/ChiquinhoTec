@@ -2,7 +2,6 @@
 using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -48,8 +47,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            _logger.LogInformation("Index");
-
             return Ok(await _addressRepository.FindAllAsync());
         }
 
@@ -60,7 +57,28 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] AddressCommand command)
         {
+            if (command is null)
+                return BadRequest();
+
             Address address = await _addressService.AddAsync(command);
+
+            if (address is null)
+                return BadRequest(_addressService.ValidationResult());
+
+            return Ok(address);
+        }
+
+        //
+        // Summary:
+        //     /// Method responsible for action: Update(PUT). ///
+        //
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromBody] AddressCommand command, Guid? id)
+        {
+            if (command is null || id is null)
+                return BadRequest();
+
+            Address address = await _addressService.UpdateAsync(command, (Guid)id);
 
             if (address is null)
                 return BadRequest(_addressService.ValidationResult());
@@ -80,7 +98,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id is null)
-                return NotFound();
+                return BadRequest();
 
             bool result = await _addressService.RemoveAsync((Guid)id);
 

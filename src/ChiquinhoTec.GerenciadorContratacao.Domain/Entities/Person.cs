@@ -41,5 +41,16 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
         public virtual IEnumerable<Address> Adresses { get; private set; } = new List<Address>();
 
         public virtual IEnumerable<Interview> Interviews { get; private set; } = new List<Interview>();
+
+        public void Update(string name, DateTime birthDate, Cpf cpf, string phone, Email email, string profile, string professionalDescription)
+        {
+            Name = name;
+            BirthDate = birthDate;
+            Cpf = cpf;
+            Phone = phone;
+            Email = email;
+            Profile = profile;
+            ProfessionalDescription = professionalDescription;
+        }
     }
 }

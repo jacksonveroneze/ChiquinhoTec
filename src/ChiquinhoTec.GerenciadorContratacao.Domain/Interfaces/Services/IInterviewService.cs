@@ -1,8 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using ChiquinhoTec.GerenciadorContratacao.Common;
+﻿using ChiquinhoTec.GerenciadorContratacao.Common;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Results;
+using System;
+using System.Threading.Tasks;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services
 {
@@ -15,5 +16,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services
         Task<Interview> AddAsync(InterviewCommand command);
 
         Task<bool> RemoveAsync(Guid id);
+
+        Task<Interview> UpdateAsync(InterviewCommand command, Guid id);
     }
 }

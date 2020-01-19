@@ -55,11 +55,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //     /// Method responsible for action: index. ///
         //
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery] PersonFilterCommand command)
         {
-            _logger.LogInformation("Index");
-
-            return Ok(await _personRepository.FindAllAsync());
+            return Ok(await _personRepository.FindByFilterAsync(command));
         }
 
         //
@@ -70,9 +68,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         public async Task<IActionResult> Addresses(Guid? id)
         {
             if (id is null)
-                return NotFound();
-
-            _logger.LogInformation($"Endereços do paciente {id}");
+                return BadRequest();
 
             return Ok(await _addressRepository.FindAddressesByPersonId((Guid)id));
         }
@@ -85,9 +81,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         public async Task<IActionResult> Interviews(Guid? id)
         {
             if (id is null)
-                return NotFound();
-
-            _logger.LogInformation($"Entrevistas do paciente {id}");
+                return BadRequest();
 
             return Ok(await _interviewRepository.FindInterviewsByPersonId((Guid)id));
         }
@@ -99,7 +93,28 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] PersonCommand command)
         {
+            if (command is null)
+                return BadRequest();
+
             Person person = await _personService.AddAsync(command);
+
+            if (person is null)
+                return BadRequest(_personService.ValidationResult());
+
+            return Ok(person);
+        }
+
+        //
+        // Summary:
+        //     /// Method responsible for action: Update(PUT). ///
+        //
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromBody] PersonCommand command, Guid? id)
+        {
+            if (command is null || id is null)
+                return BadRequest();
+
+            Person person = await _personService.UpdateAsync(command, (Guid)id);
 
             if (person is null)
                 return BadRequest(_personService.ValidationResult());
@@ -119,7 +134,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id is null)
-                return NotFound();
+                return BadRequest();
 
             bool result = await _personService.RemoveAsync((Guid)id);
 

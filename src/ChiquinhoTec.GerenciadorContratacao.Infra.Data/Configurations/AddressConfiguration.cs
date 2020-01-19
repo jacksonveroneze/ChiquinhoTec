@@ -14,6 +14,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.Property(e => e.Id)
                 .HasColumnName("id")
+                .HasColumnType("uuid")
                 .ValueGeneratedNever();
 
             builder.Property(e => e.PostalCode)
@@ -48,8 +49,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.Property(e => e.Complement)
                 .HasColumnName("complement")
-                .HasColumnType("varchar(100)")
-                .IsRequired();
+                .HasColumnType("varchar(100)");
 
             builder.Property(e => e.PrimaryAddress)
                 .HasColumnName("primary_address")
@@ -58,9 +58,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.HasOne(p => p.Person)
                 .WithMany(b => b.Adresses)
+                .IsRequired()
                 .HasForeignKey("person_id")
-                .OnDelete(DeleteBehavior.Restrict)
-                .HasConstraintName("fk_adress_person");
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")
@@ -79,13 +79,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.Property(c => c.IsActive)
                 .HasColumnName("is_active")
-                .HasColumnType("boolean")
-                .HasDefaultValueSql("true");
+                .HasColumnType("boolean");
 
             builder.Property(c => c.Version)
                 .HasColumnName("version")
                 .HasColumnType("integer")
-                .HasDefaultValueSql("1")
                 .IsRequired();
         }
     }

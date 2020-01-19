@@ -13,8 +13,13 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.HasKey(e => e.Id);
 
+            //builder.HasIndex(p => new { p.Cpf.Value, p.IsActive }).IsUnique();
+
+            //builder.HasIndex(p => new { p.Email.Value, p.IsActive }).IsUnique();
+
             builder.Property(e => e.Id)
                 .HasColumnName("id")
+                .HasColumnType("uuid")
                 .ValueGeneratedNever();
 
             builder.Property(e => e.Name)
@@ -34,7 +39,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
                 .HasColumnType("varchar(11)")
                 .IsRequired();
 
-                v.HasIndex(b => b.Value).IsUnique().HasName("uk_person_cpf");
+                v.HasIndex(b => b.Value);
             });
 
             builder.Property(e => e.Phone)
@@ -49,7 +54,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
                 .HasColumnType("varchar(100)")
                 .IsRequired();
 
-                v.HasIndex(b => b.Value).IsUnique().HasName("uk_person_email");
+                v.HasIndex(b => b.Value);
             });
 
             builder.Property(e => e.Profile)
@@ -85,13 +90,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.Property(c => c.IsActive)
                 .HasColumnName("is_active")
-                .HasColumnType("boolean")
-                .HasDefaultValueSql("true");
+                .HasColumnType("boolean");
 
             builder.Property(c => c.Version)
                 .HasColumnName("version")
                 .HasColumnType("integer")
-                .HasDefaultValueSql("1")
                 .IsRequired();
         }
     }

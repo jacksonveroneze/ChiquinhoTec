@@ -15,6 +15,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.Property(e => e.Id)
                 .HasColumnName("id")
+                .HasColumnType("uuid")
                 .ValueGeneratedNever();
 
             builder.Property(c => c.SchedulingDate)
@@ -24,14 +25,14 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.Property(e => e.Squad)
                 .HasColumnName("squad")
-                .HasColumnType("varchar(100)")
+                .HasColumnType("integer")
                 .IsRequired();
 
             builder.HasOne(p => p.Person)
                 .WithMany(b => b.Interviews)
+                .IsRequired()
                 .HasForeignKey("person_id")
-                .OnDelete(DeleteBehavior.Restrict)
-                .HasConstraintName("fk_interview_person");
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")
@@ -50,13 +51,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.Property(c => c.IsActive)
                 .HasColumnName("is_active")
-                .HasColumnType("boolean")
-                .HasDefaultValueSql("true");
+                .HasColumnType("boolean");
 
             builder.Property(c => c.Version)
                 .HasColumnName("version")
                 .HasColumnType("integer")
-                .HasDefaultValueSql("1")
                 .IsRequired();
         }
     }

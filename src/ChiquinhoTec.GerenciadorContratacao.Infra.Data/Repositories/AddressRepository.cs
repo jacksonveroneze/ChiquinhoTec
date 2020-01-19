@@ -50,6 +50,22 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Repositories
         //   id:
         //     The id param.
         //
+        public Task<Address> FindCurrentPrimaryAddressByPersonId(Guid personId)
+        {
+            return _context
+                        .Set<Address>()
+                        .Where(x => x.Person.Id == personId && x.PrimaryAddress == true && x.IsActive == true)
+                        .FirstOrDefaultAsync();
+        }
+
+        //
+        // Summary:
+        //     /// Method responsible for searching the data. ///
+        //
+        // Parameters:
+        //   id:
+        //     The id param.
+        //
         public bool HasAddressesByPersonId(Guid personId)
         {
             int total = _context

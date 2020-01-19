@@ -9,14 +9,14 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
     {
         public static void Main(string[] args)
         {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Warning)
-                .MinimumLevel.Override("System", LogEventLevel.Warning)
-                .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
-                .Enrich.FromLogContext()
-                .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Literate)
-                .CreateLogger();
+            //Log.Logger = new LoggerConfiguration()
+            //    .MinimumLevel.Debug()
+            //    .MinimumLevel.Override("Microsoft", LogEventLevel.Debug)
+            //    .MinimumLevel.Override("System", LogEventLevel.Debug)
+            //    .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Debug)
+            //    .Enrich.FromLogContext()
+            //    .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Literate)
+            //    .CreateLogger();
 
             CreateHostBuilder(args).Build().Run();
         }
@@ -26,7 +26,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    webBuilder.UseSerilog();
                 });
     }
 }

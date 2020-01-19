@@ -1,5 +1,6 @@
 ﻿using System;
 using ChiquinhoTec.GerenciadorContratacao.Common;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Enums;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
 {
@@ -11,17 +12,23 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
     {
         public Interview() { }
 
-        public Interview(DateTime schedulingDate, string squad, Person person)
+        public Interview(DateTime schedulingDate, Squads squad, Person person)
         {
-            SchedulingDate = SchedulingDate;
+            SchedulingDate = schedulingDate;
             Squad = squad;
             Person = person;
         }
 
         public DateTime SchedulingDate { get; private set; }
 
-        public string Squad { get; private set; }
+        public Squads Squad { get; private set; }
 
         public Person Person { get; private set; }
+
+        public void Update(DateTime schedulingDate, Squads squad)
+        {
+            SchedulingDate = schedulingDate;
+            Squad = squad;
+        }
     }
 }

@@ -41,5 +41,20 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
         public bool PrimaryAddress { get; private set; }
 
         public Person Person { get; private set; }
+
+        public void UpdatePrimaryAddress(bool value)
+            => PrimaryAddress = value;
+
+        public void Update(string postalCode, string state, string city, string district, string street, int streetNumber, string complement, bool primaryAddress)
+        {
+            PostalCode = postalCode;
+            State = state;
+            City = city;
+            District = district;
+            Street = street;
+            StreetNumber = streetNumber;
+            Complement = complement;
+            PrimaryAddress = primaryAddress;
+        }
     }
 }

@@ -45,11 +45,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //     /// Method responsible for action: index. ///
         //
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery] InterviewFilterCommand command)
         {
-            _logger.LogInformation("Index");
-
-            return Ok(await _interviewRepository.FindAllAsync());
+            return Ok(await _interviewRepository.FindByFilterAsync(command));
         }
 
         //
@@ -59,7 +57,28 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] InterviewCommand command)
         {
+            if (command is null)
+                return BadRequest();
+
             Interview interview = await _interviewService.AddAsync(command);
+
+            if (interview is null)
+                return BadRequest(_interviewService.ValidationResult());
+
+            return Ok(interview);
+        }
+
+        //
+        // Summary:
+        //     /// Method responsible for action: Update(PUT). ///
+        //
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromBody] InterviewCommand command, Guid? id)
+        {
+            if (command is null || id is null)
+                return BadRequest();
+
+            Interview interview = await _interviewService.UpdateAsync(command, (Guid)id);
 
             if (interview is null)
                 return BadRequest(_interviewService.ValidationResult());
@@ -79,7 +98,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id is null)
-                return NotFound();
+                return BadRequest();
 
             bool result = await _interviewService.RemoveAsync((Guid)id);
 

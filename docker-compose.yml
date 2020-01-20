@@ -3,7 +3,7 @@ version: '3.7'
 services:
   api:
     build:
-      context: src/ChiquinhoTec.GerenciadorContratacao.Web/
+      context: src/ChiquinhoTec.GerenciadorContratacao.Api/
       dockerfile: Dockerfile
     depends_on:
       - db
@@ -18,7 +18,7 @@ services:
     image: postgres
     restart: always
     environment:
-      - POSTGRES_PASSWORD=senhadeveloperIC07
+      - POSTGRES_PASSWORD=postgres
     volumes:
       - db:/var/lib/postgresql/data
     ports:

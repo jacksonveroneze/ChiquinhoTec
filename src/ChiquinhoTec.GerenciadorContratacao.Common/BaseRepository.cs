@@ -21,14 +21,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
         protected BaseRepository(DbContext context)
             => _context = context;
 
-        //
-        // Summary:
-        //     /// Método responsável por criar um registro. ///
-        //
-        // Parameters:
-        //   entity:
-        //     The entity param.
-        //
         public async Task AddAsync(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
@@ -36,50 +28,21 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
             await _context.SaveChangesAsync();
         }
 
-        //
-        // Summary:
-        //     /// Método responsável por buscar um registro pelo ID. ///
-        //
-        // Parameters:
-        //   id:
-        //     The id param.
-        //
-        public ValueTask<T> FindAsync(Guid id)
-            => _context.FindAsync<T>(id);
+        public Task<T> FindAsync(Guid id)
+            => _context
+                .Set<T>()
+                .Where(x => x.Id == id && x.IsActive == true)
+                .FirstOrDefaultAsync();
 
-        //
-        // Summary:
-        //     /// Método responsável por buscar todos os registros. ///
-        //
-        // Parameters:
-        //   id:
-        //     The id param.
-        //
         public Task<List<T>> FindAllAsync()
         {
-            return _context.Set<T>().ToListAsync();
+            return _context.Set<T>().Where(x => x.IsActive == true).ToListAsync();
         }
 
-        //
-        // Summary:
-        //     /// Método responsável por buscar todos os registros - paginados. ///
-        //
-        // Parameters:
-        //   id:
-        //     The id param.
-        //
         public Task<List<T>> FindAllAsync(int skip, int take)
-            => _context.Set<T>().Skip(skip).Take(take).ToListAsync();
+            => _context.Set<T>().Skip(skip).Take(take).Where(x => x.IsActive == true).ToListAsync();
 
 
-        //
-        // Summary:
-        //     /// Método responsável por remover um registro. ///
-        //
-        // Parameters:
-        //   entity:
-        //     The entity param.
-        //
         public async Task RemoveAsync(T entity)
         {
             entity.IsActive = false;
@@ -89,17 +52,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Common
             await _context.SaveChangesAsync();
         }
 
-        //
-        // Summary:
-        //     /// Método responsável por atualizar um registro. ///
-        //
-        // Parameters:
-        //   entity:
-        //     The entity param.
-        //
         public async Task UpdateAsync(T entity)
         {
             entity.IncrementVersion();
+
+            entity.UpdatedAt = DateTime.Now;
 
             _context.Set<T>().Update(entity);
 

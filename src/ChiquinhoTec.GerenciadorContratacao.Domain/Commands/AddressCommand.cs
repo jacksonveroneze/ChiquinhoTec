@@ -9,7 +9,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Commands
     //
     public class AddressCommand : BaseCommand
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
         public string PostalCode { get; set; }
 

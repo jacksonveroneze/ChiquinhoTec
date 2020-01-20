@@ -1,6 +1,11 @@
 ﻿using ChiquinhoTec.GerenciadorContratacao.Common;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Repositories
 {
@@ -19,5 +24,56 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Repositories
         //     The context param.
         //
         public AddressRepository(ApplicationDbContext context) : base(context) { }
+
+        //
+        // Summary:
+        //     /// Method responsible for searching the data. ///
+        //
+        // Parameters:
+        //   id:
+        //     The id param.
+        //
+        public Task<List<Address>> FindAddressesByPersonId(Guid personId)
+        {
+            return _context
+                        .Set<Address>()
+                        .Where(x => x.Person.Id == personId && x.IsActive == true)
+                        .AsNoTracking()
+                        .ToListAsync();
+        }
+
+        //
+        // Summary:
+        //     /// Method responsible for searching the data. ///
+        //
+        // Parameters:
+        //   id:
+        //     The id param.
+        //
+        public Task<Address> FindCurrentPrimaryAddressByPersonId(Guid personId)
+        {
+            return _context
+                        .Set<Address>()
+                        .Where(x => x.Person.Id == personId && x.PrimaryAddress == true && x.IsActive == true)
+                        .FirstOrDefaultAsync();
+        }
+
+        //
+        // Summary:
+        //     /// Method responsible for searching the data. ///
+        //
+        // Parameters:
+        //   id:
+        //     The id param.
+        //
+        public bool HasAddressesByPersonId(Guid personId)
+        {
+            int total = _context
+                            .Set<Address>()
+                            .Where(x => x.Person.Id == personId && x.IsActive == true)
+                            .Count();
+
+            return total > 0;
+        }
     }
 }

@@ -15,53 +15,47 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.Property(e => e.Id)
                 .HasColumnName("id")
+                .HasColumnType("uuid")
                 .ValueGeneratedNever();
 
-            builder.Property(c => c.Date)
-                .HasColumnName("date")
-                .HasColumnType("date")
-                .HasDefaultValueSql("null");
-
-            builder.Property(c => c.Schedule)
-                .HasColumnName("schedule")
-                .HasColumnType("time")
-                .HasDefaultValueSql("null");
+            builder.Property(c => c.SchedulingDate)
+                .HasColumnName("scheduling_date")
+                .HasColumnType("timestamp")
+                .IsRequired();
 
             builder.Property(e => e.Squad)
                 .HasColumnName("squad")
-                .HasColumnType("varchar(100)")
+                .HasColumnType("integer")
                 .IsRequired();
 
             builder.HasOne(p => p.Person)
                 .WithMany(b => b.Interviews)
+                .IsRequired()
                 .HasForeignKey("person_id")
-                .OnDelete(DeleteBehavior.Restrict)
-                .HasConstraintName("fk_interview_person");
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")
-                .HasColumnType("timestamptz")
+                .HasColumnType("timestamp")
                 .IsRequired();
 
             builder.Property(c => c.UpdatedAt)
                 .HasColumnName("updated_at")
-                .HasColumnType("timestamptz")
+                .HasColumnType("timestamp")
                 .HasDefaultValueSql("null");
 
             builder.Property(c => c.DeletedAt)
                 .HasColumnName("deleted_at")
-                .HasColumnType("timestamptz")
+                .HasColumnType("timestamp")
                 .HasDefaultValueSql("null");
 
             builder.Property(c => c.IsActive)
                 .HasColumnName("is_active")
-                .HasColumnType("boolean")
-                .HasDefaultValueSql("true");
+                .HasColumnType("boolean");
 
             builder.Property(c => c.Version)
                 .HasColumnName("version")
                 .HasColumnType("integer")
-                .HasDefaultValueSql("1")
                 .IsRequired();
         }
     }

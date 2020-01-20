@@ -10,6 +10,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data
         public DbSet<Address> Address { get; set; }
         public DbSet<Interview> Interviews { get; set; }
         public DbSet<Person> Persons { get; set; }
+        public DbSet<EntityAudit> EntityAudits { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -4,6 +4,7 @@ using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -55,6 +56,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //     /// Method responsible for action: index. ///
         //
         [HttpGet]
+        [Authorize("read:address")]
         public async Task<IActionResult> Index()
         {
             List<Address> list = await _addressRepository.FindAllAsync();
@@ -67,6 +69,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //     /// Method responsible for action: Create(POST). ///
         //
         [HttpPost]
+        [Authorize("create:address")]
         public async Task<IActionResult> Create([FromBody] AddressCommand command)
         {
             if (command is null)
@@ -87,6 +90,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //     /// Method responsible for action: Update(PUT). ///
         //
         [HttpPut("{id}")]
+        [Authorize("update:address")]
         public async Task<IActionResult> Update([FromBody] AddressCommand command, Guid? id)
         {
             if (command is null || id is null)
@@ -111,6 +115,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //     The id param.
         //
         [HttpDelete("{id}")]
+        [Authorize("remove:address")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id is null)

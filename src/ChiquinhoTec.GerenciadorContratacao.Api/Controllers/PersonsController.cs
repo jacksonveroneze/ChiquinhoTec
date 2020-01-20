@@ -4,6 +4,7 @@ using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("[controller]")]
     public class PersonsController : ControllerBase
     {
@@ -65,6 +67,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //     /// Method responsible for action: index. ///
         //
         [HttpGet]
+        [Authorize("read:person")]
         public async Task<IActionResult> Index([FromQuery] PersonFilterCommand command)
         {
             List<Person> list = await _personRepository.FindByFilterAsync(command);
@@ -77,6 +80,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //     /// Method responsible for action: index. ///
         //
         [HttpGet("{id}/Addresses")]
+        [Authorize("read:person-address")]
         public async Task<IActionResult> Addresses(Guid? id)
         {
             if (id is null)
@@ -92,6 +96,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //     /// Method responsible for action: index. ///
         //
         [HttpGet("{id}/Interviews")]
+        [Authorize("read:person-interview")]
         public async Task<IActionResult> Interviews(Guid? id)
         {
             if (id is null)
@@ -107,6 +112,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //     /// Method responsible for action: Create(POST). ///
         //
         [HttpPost]
+        [Authorize("create:person")]
         public async Task<IActionResult> Create([FromBody] PersonCommand command)
         {
             if (command is null)
@@ -127,6 +133,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //     /// Method responsible for action: Update(PUT). ///
         //
         [HttpPut("{id}")]
+        [Authorize("update:person")]
         public async Task<IActionResult> Update([FromBody] PersonCommand command, Guid? id)
         {
             if (command is null || id is null)
@@ -151,6 +158,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //     The id param.
         //
         [HttpDelete("{id}")]
+        [Authorize("remove:person")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id is null)

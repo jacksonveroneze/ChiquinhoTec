@@ -2,6 +2,8 @@ using AutoMapper;
 using ChiquinhoTec.GerenciadorContratacao.Api.Middlewares;
 using ChiquinhoTec.GerenciadorContratacao.Infra.Data;
 using ChiquinhoTec.GerenciadorContratacao.IoC;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Localization;
@@ -50,7 +52,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
                     .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
                     .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Literate)
                     .Enrich.FromLogContext()
-                    .WriteTo.MongoDB(mongoUri, collectionName: "applog")
+                    //.WriteTo.MongoDB(mongoUri, collectionName: "applog")
                     .CreateLogger();
 
             services.AddCors(options =>
@@ -63,6 +65,23 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
                         builder.AllowAnyOrigin();
                     });
             });
+
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = "https://jacksonveroneze.auth0.com/";
+                options.Audience = "https://jacksonveroneze.azurewebsites.net";
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("read:person", policy => policy.Requirements.Add(new HasScopeRequirement("read:person", "https://jacksonveroneze.auth0.com/")));
+            });
+
+            services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,6 +112,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
 
             app.UseHealthChecks("/check");
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

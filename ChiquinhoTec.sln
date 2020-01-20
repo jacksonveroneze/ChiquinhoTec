@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChiquinhoTec.GerenciadorCon
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChiquinhoTec.GerenciadorContratacao.IoC", "src\ChiquinhoTec.GerenciadorContratacao.IoC\ChiquinhoTec.GerenciadorContratacao.IoC.csproj", "{82C8D433-2489-4602-B825-18F327842B9C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChiquinhoTec.GerenciadorContratacao.Web", "src\ChiquinhoTec.GerenciadorContratacao.Web\ChiquinhoTec.GerenciadorContratacao.Web.csproj", "{5666BC79-0F79-4179-9EB2-1B3903BF607D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChiquinhoTec.GerenciadorContratacao.Api", "src\ChiquinhoTec.GerenciadorContratacao.Api\ChiquinhoTec.GerenciadorContratacao.Api.csproj", "{7E3A9F92-C17E-4216-B8E3-B1766C3A7FEE}"
 EndProject
 Global
@@ -138,7 +136,6 @@ Global
 		{BFE3E2BA-79CB-4E72-8312-DA2F10CAF32D} = {4D2E8EC2-8431-4EFF-8BAE-B8FDACE40C2B}
 		{7B73F316-8155-49E0-9FB2-C7D4647B7A28} = {4D2E8EC2-8431-4EFF-8BAE-B8FDACE40C2B}
 		{82C8D433-2489-4602-B825-18F327842B9C} = {4D2E8EC2-8431-4EFF-8BAE-B8FDACE40C2B}
-		{5666BC79-0F79-4179-9EB2-1B3903BF607D} = {4D2E8EC2-8431-4EFF-8BAE-B8FDACE40C2B}
 		{7E3A9F92-C17E-4216-B8E3-B1766C3A7FEE} = {4D2E8EC2-8431-4EFF-8BAE-B8FDACE40C2B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

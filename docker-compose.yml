@@ -3,7 +3,7 @@ version: '3.7'
 services:
   api:
     build:
-      context: src/ChiquinhoTec.GerenciadorContratacao.Api/
+      context: .
       dockerfile: Dockerfile
     depends_on:
       - db

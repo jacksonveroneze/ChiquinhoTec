@@ -31,17 +31,26 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
                 .WithMessage("Não é permitido o agendamento de entrevistas para o final de semana.")
                 .Must((x) => x.Hour >= 13 && x.Hour <= 20)
                 .WithMessage("Não é permitido o agendamento fora do período (13:00 - 20:00).")
+                .Must((x) => x.Minute == 0 || x.Minute == 30)
+                .WithMessage("O horário de inicio e termino das entrevistas devem sempre terminar em 00 ou 30(ex: 14:30, 16:00).")
                 .MustAsync(async (request, val, token) =>
                 {
                     Interview interview = await interviewRepository.FindInterviewByPersonIdAndDate(request.PersonId, request.SchedulingDate);
 
                     return interview is null;
                 })
-                .WithMessage("Deve haver um intervalo de 3 horas entre as entrevistas para o mesmo candidato.");
+                .WithMessage("Deve haver um intervalo de 3 horas entre as entrevistas para o mesmo candidato.")
+                .MustAsync(async (request, val, token) =>
+                 {
+                     Interview interview = await interviewRepository.FindInterviewBySquadAndDate(request.Squad, request.SchedulingDate);
+
+                     return interview is null;
+                 })
+                .WithMessage("Deve haver um intervalo de 3 horas entre as entrevistas para o mesmo squad.");
 
             RuleFor(x => x.Squad)
                 .IsInEnum()
-                .WithMessage("Squad inválido, fornce opções entre 1 - 8.");
+                .WithMessage("Squad inválido, forneça opções entre 1 - 8.");
 
             RuleFor(x => x.PersonId)
                 .NotEmpty()
@@ -70,8 +79,3 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
         }
     }
 }
-
-//4. O sistema deve permitir ao candidato o cadastro de mais de uma entrevista no mesmo dia sendo que a diferença de horário entre elas no mínimo 3 horas;
-//5. O sistema não deve permitir que uma squad tenha mais de uma entrevista no mesmo dia e horário sendo a diferença mínima entre as entrevistas de 3 horas;
-//6. O horário de inicio e termino das entrevistas devem sempre terminar em 00 ou 30(ex: 14:30, 16:00) sendo a hora fim maior que a hora inicio e
-//dentro do intervalo das 13:00 as 20:00;

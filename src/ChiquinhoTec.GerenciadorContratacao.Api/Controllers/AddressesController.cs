@@ -1,10 +1,14 @@
-﻿using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
+﻿using AutoMapper;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
@@ -14,6 +18,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
     public class AddressesController : ControllerBase
     {
         private readonly ILogger<AddressesController> _logger;
+        //
+        private readonly IMapper _mapper;
         //
         private readonly IAddressRepository _addressRepository;
         //
@@ -27,15 +33,19 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //   logger:
         //     The logger param.
         //
+        //   mapper:
+        //     The mapper param.
+        //
         //   addressesRepository:
         //     The addressesRepository param.
         //
         //   addressesService:
         //     The addressesService param.
         //
-        public AddressesController(ILogger<AddressesController> logger, IAddressRepository addressesRepository, IAddressService addressesService)
+        public AddressesController(ILogger<AddressesController> logger, IMapper mapper, IAddressRepository addressesRepository, IAddressService addressesService)
         {
             _logger = logger;
+            _mapper = mapper;
             _addressRepository = addressesRepository;
             _addressService = addressesService;
         }
@@ -47,7 +57,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return Ok(await _addressRepository.FindAllAsync());
+            List<Address> list = await _addressRepository.FindAllAsync();
+
+            return Ok(_mapper.Map<List<Address>, List<AddressResult>>(list));
         }
 
         //
@@ -63,9 +75,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
             Address address = await _addressService.AddAsync(command);
 
             if (address is null)
-                return BadRequest(_addressService.ValidationResult());
+                return BadRequest(_addressService.ValidationResult()
+                    .Errors
+                    .Select(x => new ValidationResult() { PropertyName = x.PropertyName, ErrorMessage = x.ErrorMessage }));
 
-            return Ok(address);
+            return Ok(_mapper.Map<Address, AddressResult>(address));
         }
 
         //
@@ -81,9 +95,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
             Address address = await _addressService.UpdateAsync(command, (Guid)id);
 
             if (address is null)
-                return BadRequest(_addressService.ValidationResult());
+                return BadRequest(_addressService.ValidationResult()
+                    .Errors
+                    .Select(x => new ValidationResult() { PropertyName = x.PropertyName, ErrorMessage = x.ErrorMessage }));
 
-            return Ok(address);
+            return Ok(_mapper.Map<Address, AddressResult>(address));
         }
 
         //

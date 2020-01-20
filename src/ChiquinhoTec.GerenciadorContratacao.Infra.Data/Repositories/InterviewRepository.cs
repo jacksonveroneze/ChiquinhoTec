@@ -126,7 +126,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Repositories
             return _context
                         .Set<Interview>()
                         .Where(x => x.Person.Id == personId &&
-                                    (x.SchedulingDate.Date.Equals(date.Date)) &&
                                     (x.SchedulingDate > dateSub3Hours && x.SchedulingDate < dateAdd3Hours) &&
                                     x.IsActive == true)
                         .AsNoTracking()
@@ -154,8 +153,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Repositories
 
             return _context
                         .Set<Interview>()
-                        .Where(x => x.Squad.Equals(squadId) &&
-                                    (x.SchedulingDate.Date >= dateSub3Hours && x.SchedulingDate.Date <= dateAdd3Hours) &&
+                        .Where(x => x.Squad == squadId &&
+                                    (x.SchedulingDate > dateSub3Hours && x.SchedulingDate < dateAdd3Hours) &&
                                     x.IsActive == true)
                         .AsNoTracking()
                         .FirstOrDefaultAsync();

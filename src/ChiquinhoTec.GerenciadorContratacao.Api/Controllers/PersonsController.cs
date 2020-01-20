@@ -1,10 +1,14 @@
+using AutoMapper;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
@@ -14,6 +18,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
     public class PersonsController : ControllerBase
     {
         private readonly ILogger<PersonsController> _logger;
+        //
+        private readonly IMapper _mapper;
         //
         private readonly IPersonRepository _personRepository;
         private readonly IAddressRepository _addressRepository;
@@ -29,6 +35,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //   logger:
         //     The logger param.
         //
+        //   mapper:
+        //     The mapper param.
+        //
         //   personRepository:
         //     The personRepository param.
         //
@@ -41,9 +50,10 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //   personService:
         //     The personService param.
         //
-        public PersonsController(ILogger<PersonsController> logger, IPersonRepository personRepository, IAddressRepository addressRepository, IInterviewRepository interviewRepository, IPersonService personService)
+        public PersonsController(ILogger<PersonsController> logger, IMapper mapper, IPersonRepository personRepository, IAddressRepository addressRepository, IInterviewRepository interviewRepository, IPersonService personService)
         {
             _logger = logger;
+            _mapper = mapper;
             _personRepository = personRepository;
             _addressRepository = addressRepository;
             _interviewRepository = interviewRepository;
@@ -57,7 +67,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Index([FromQuery] PersonFilterCommand command)
         {
-            return Ok(await _personRepository.FindByFilterAsync(command));
+            List<Person> list = await _personRepository.FindByFilterAsync(command);
+
+            return Ok(_mapper.Map<List<Person>, List<PersonResult>>(list));
         }
 
         //
@@ -70,7 +82,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
             if (id is null)
                 return BadRequest();
 
-            return Ok(await _addressRepository.FindAddressesByPersonId((Guid)id));
+            List<Address> list = await _addressRepository.FindAddressesByPersonId((Guid)id);
+
+            return Ok(_mapper.Map<List<Address>, List<AddressResult>>(list));
         }
 
         //
@@ -83,7 +97,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
             if (id is null)
                 return BadRequest();
 
-            return Ok(await _interviewRepository.FindInterviewsByPersonId((Guid)id));
+            List<Interview> list = await _interviewRepository.FindInterviewsByPersonId((Guid)id);
+
+            return Ok(_mapper.Map<List<Interview>, List<InterviewResult>>(list));
         }
 
         //
@@ -99,9 +115,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
             Person person = await _personService.AddAsync(command);
 
             if (person is null)
-                return BadRequest(_personService.ValidationResult());
+                return BadRequest(_personService.ValidationResult()
+                    .Errors
+                    .Select(x => new ValidationResult() { PropertyName = x.PropertyName, ErrorMessage = x.ErrorMessage }));
 
-            return Ok(person);
+            return Ok(_mapper.Map<Person, PersonResult>(person));
         }
 
         //
@@ -117,9 +135,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
             Person person = await _personService.UpdateAsync(command, (Guid)id);
 
             if (person is null)
-                return BadRequest(_personService.ValidationResult());
+                return BadRequest(_personService.ValidationResult()
+                    .Errors
+                    .Select(x => new ValidationResult() { PropertyName = x.PropertyName, ErrorMessage = x.ErrorMessage }));
 
-            return Ok(person);
+            return Ok(_mapper.Map<Person, PersonResult>(person));
         }
 
         //

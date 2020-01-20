@@ -20,7 +20,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.Property(c => c.SchedulingDate)
                 .HasColumnName("scheduling_date")
-                .HasColumnType("timestamptz")
+                .HasColumnType("timestamp")
                 .IsRequired();
 
             builder.Property(e => e.Squad)
@@ -36,17 +36,17 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Configurations
 
             builder.Property(c => c.CreatedAt)
                 .HasColumnName("created_at")
-                .HasColumnType("timestamptz")
+                .HasColumnType("timestamp")
                 .IsRequired();
 
             builder.Property(c => c.UpdatedAt)
                 .HasColumnName("updated_at")
-                .HasColumnType("timestamptz")
+                .HasColumnType("timestamp")
                 .HasDefaultValueSql("null");
 
             builder.Property(c => c.DeletedAt)
                 .HasColumnName("deleted_at")
-                .HasColumnType("timestamptz")
+                .HasColumnType("timestamp")
                 .HasDefaultValueSql("null");
 
             builder.Property(c => c.IsActive)

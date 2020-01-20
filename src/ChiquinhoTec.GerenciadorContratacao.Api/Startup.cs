@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using ChiquinhoTec.GerenciadorContratacao.Api.Middlewares;
 using ChiquinhoTec.GerenciadorContratacao.Infra.Data;
 using ChiquinhoTec.GerenciadorContratacao.IoC;
@@ -46,6 +47,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
 
             services.AddHealthChecks();
             services.AddApplicationInsightsTelemetry(Configuration);
+
+            services.AddAutoMapper(typeof(MappingProfile));
 
             string mongoUri = Configuration["MongoConfiguration:Uri"];
 

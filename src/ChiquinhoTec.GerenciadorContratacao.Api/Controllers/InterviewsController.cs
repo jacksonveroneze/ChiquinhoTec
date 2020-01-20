@@ -1,10 +1,14 @@
-﻿using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
+﻿using AutoMapper;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
+using ChiquinhoTec.GerenciadorContratacao.Domain.Results;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
@@ -14,6 +18,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
     public class InterviewsController : ControllerBase
     {
         private readonly ILogger<InterviewsController> _logger;
+        //
+        private readonly IMapper _mapper;
         //
         private readonly IInterviewRepository _interviewRepository;
         //
@@ -27,15 +33,19 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         //   logger:
         //     The logger param.
         //
+        //   mapper:
+        //     The mapper param.
+        //
         //   interviewRepository:
         //     The interviewRepository param.
         //
         //   interviewService:
         //     The interviewService param.
         //
-        public InterviewsController(ILogger<InterviewsController> logger, IInterviewRepository interviewRepository, IInterviewService interviewService)
+        public InterviewsController(ILogger<InterviewsController> logger, IMapper mapper, IInterviewRepository interviewRepository, IInterviewService interviewService)
         {
             _logger = logger;
+            _mapper = mapper;
             _interviewRepository = interviewRepository;
             _interviewService = interviewService;
         }
@@ -47,7 +57,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Index([FromQuery] InterviewFilterCommand command)
         {
-            return Ok(await _interviewRepository.FindByFilterAsync(command));
+            List<Interview> list = await _interviewRepository.FindByFilterAsync(command);
+
+            return Ok(_mapper.Map<List<Interview>, List<InterviewResult>>(list));
         }
 
         //
@@ -63,9 +75,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
             Interview interview = await _interviewService.AddAsync(command);
 
             if (interview is null)
-                return BadRequest(_interviewService.ValidationResult());
+                return BadRequest(_interviewService.ValidationResult()
+                    .Errors
+                    .Select(x => new ValidationResult() { PropertyName = x.PropertyName, ErrorMessage = x.ErrorMessage }));
 
-            return Ok(interview);
+            return Ok(_mapper.Map<Interview, InterviewResult>(interview));
         }
 
         //
@@ -81,9 +95,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Controllers
             Interview interview = await _interviewService.UpdateAsync(command, (Guid)id);
 
             if (interview is null)
-                return BadRequest(_interviewService.ValidationResult());
+                return BadRequest(_interviewService.ValidationResult()
+                    .Errors
+                    .Select(x => new ValidationResult() { PropertyName = x.PropertyName, ErrorMessage = x.ErrorMessage }));
 
-            return Ok(interview);
+            return Ok(_mapper.Map<Interview, InterviewResult>(interview));
         }
 
         //

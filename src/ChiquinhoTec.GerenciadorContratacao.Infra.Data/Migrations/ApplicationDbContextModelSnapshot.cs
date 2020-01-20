@@ -36,12 +36,12 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("created_at")
-                        .HasColumnType("timestamptz");
+                        .HasColumnType("timestamp");
 
                     b.Property<DateTime?>("DeletedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("deleted_at")
-                        .HasColumnType("timestamptz")
+                        .HasColumnType("timestamp")
                         .HasDefaultValueSql("null");
 
                     b.Property<string>("District")
@@ -50,10 +50,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                         .HasColumnType("varchar(100)");
 
                     b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
                         .HasColumnName("is_active")
-                        .HasColumnType("boolean")
-                        .HasDefaultValueSql("true");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
@@ -81,14 +79,12 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("updated_at")
-                        .HasColumnType("timestamptz")
+                        .HasColumnType("timestamp")
                         .HasDefaultValueSql("null");
 
                     b.Property<int>("Version")
-                        .ValueGeneratedOnAdd()
                         .HasColumnName("version")
-                        .HasColumnType("integer")
-                        .HasDefaultValueSql("1");
+                        .HasColumnType("integer");
 
                     b.Property<Guid>("person_id")
                         .HasColumnType("uuid");
@@ -113,12 +109,12 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("created_at")
-                        .HasColumnType("timestamptz");
+                        .HasColumnType("timestamp");
 
                     b.Property<DateTime?>("DeletedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("deleted_at")
-                        .HasColumnType("timestamptz")
+                        .HasColumnType("timestamp")
                         .HasDefaultValueSql("null");
 
                     b.Property<Guid>("EntityId")
@@ -126,10 +122,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
                         .HasColumnName("is_active")
-                        .HasColumnType("boolean")
-                        .HasDefaultValueSql("true");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -144,14 +138,12 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("updated_at")
-                        .HasColumnType("timestamptz")
+                        .HasColumnType("timestamp")
                         .HasDefaultValueSql("null");
 
                     b.Property<int>("Version")
-                        .ValueGeneratedOnAdd()
                         .HasColumnName("version")
-                        .HasColumnType("integer")
-                        .HasDefaultValueSql("1");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
@@ -166,23 +158,21 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("created_at")
-                        .HasColumnType("timestamptz");
+                        .HasColumnType("timestamp");
 
                     b.Property<DateTime?>("DeletedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("deleted_at")
-                        .HasColumnType("timestamptz")
+                        .HasColumnType("timestamp")
                         .HasDefaultValueSql("null");
 
                     b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
                         .HasColumnName("is_active")
-                        .HasColumnType("boolean")
-                        .HasDefaultValueSql("true");
+                        .HasColumnType("boolean");
 
                     b.Property<DateTime>("SchedulingDate")
                         .HasColumnName("scheduling_date")
-                        .HasColumnType("timestamptz");
+                        .HasColumnType("timestamp");
 
                     b.Property<int>("Squad")
                         .HasColumnName("squad")
@@ -191,14 +181,12 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("updated_at")
-                        .HasColumnType("timestamptz")
+                        .HasColumnType("timestamp")
                         .HasDefaultValueSql("null");
 
                     b.Property<int>("Version")
-                        .ValueGeneratedOnAdd()
                         .HasColumnName("version")
-                        .HasColumnType("integer")
-                        .HasDefaultValueSql("1");
+                        .HasColumnType("integer");
 
                     b.Property<Guid>("person_id")
                         .HasColumnType("uuid");
@@ -222,19 +210,17 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnName("created_at")
-                        .HasColumnType("timestamptz");
+                        .HasColumnType("timestamp");
 
                     b.Property<DateTime?>("DeletedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("deleted_at")
-                        .HasColumnType("timestamptz")
+                        .HasColumnType("timestamp")
                         .HasDefaultValueSql("null");
 
                     b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
                         .HasColumnName("is_active")
-                        .HasColumnType("boolean")
-                        .HasDefaultValueSql("true");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -259,14 +245,12 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnName("updated_at")
-                        .HasColumnType("timestamptz")
+                        .HasColumnType("timestamp")
                         .HasDefaultValueSql("null");
 
                     b.Property<int>("Version")
-                        .ValueGeneratedOnAdd()
                         .HasColumnName("version")
-                        .HasColumnType("integer")
-                        .HasDefaultValueSql("1");
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

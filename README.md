@@ -1,6 +1,6 @@
 # Pharmacy
 
-API developed to be consulted in the ChiquinhoTec - Gerenciador Contrataçãoo application.
+API developed to be consulted in the ChiquinhoTec - Gerenciador Contratação application.
 
 ## Getting Started
 Use these instructions to get the project up and running.
@@ -50,6 +50,7 @@ Follow these steps to get your development environment set up:
 * ASP.NET Core 3.1
 * Entity Framework Core 3.1
 * Application Insights
+* CI/CD Azure DevOps
 
 ## License
 

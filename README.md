@@ -1,4 +1,4 @@
-# Pharmacy
+# ChiquinhoTec - Gerenciador Contratação
 
 API developed to be consulted in the ChiquinhoTec - Gerenciador Contratação application.
 

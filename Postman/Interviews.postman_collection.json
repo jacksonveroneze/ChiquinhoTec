@@ -1,0 +1,178 @@
+{
+	"info": {
+		"_postman_id": "25d4e40d-3372-4d5c-a568-5f001a7b3a56",
+		"name": "Interviews",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Interviews",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/Interviews",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"Interviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Interviews",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"SchedulingDate\": \"2020-01-15T13:01:00\",\n  \"Squad\": 8,\n  \"PersonId\": \"db857236-a6ca-4491-af3c-51c77264a141\"\n}"
+				},
+				"url": {
+					"raw": "{{api_url}}/Interviews",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"Interviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Interviews",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/Interviews/3d96bdc0-6dbb-4d4b-bc44-1146d342bad4",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"Interviews",
+						"3d96bdc0-6dbb-4d4b-bc44-1146d342bad4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Interviews",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"Id\": \"0d7a1bbe-0c5d-41fa-85eb-8dd9b02daa5a\",\n  \"SchedulingDate\": \"2020-03-18T17:02:57\",\n  \"Squad\": 8,\n  \"PersonId\": \"e9036721-4c24-41f1-bcab-c15234de127d\"\n}"
+				},
+				"url": {
+					"raw": "{{api_url}}/Interviews/0d7a1bbe-0c5d-41fa-85eb-8dd9b02daa5a",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"Interviews",
+						"0d7a1bbe-0c5d-41fa-85eb-8dd9b02daa5a"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "8644a4a6-8c53-47ff-9a2c-00778fcb195f",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "259068fd-fb2e-4dbb-ae63-c9f65b702050",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "63f6119c-5fa7-4f4c-b718-2048210f55c7",
+			"key": "api_url",
+			"value": "https://jacksonveroneze.azurewebsites.net",
+			"type": "string"
+		},
+		{
+			"id": "baedc0b3-667c-4272-aaf1-6ed95ec05fbd",
+			"key": "token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJETkVNalV5UXpGRE56ZENOVEpGUXpoQ1JFSXpNMFl6T0VJd016TXdNRUpFTWtaRk5qVTBSZyJ9.eyJpc3MiOiJodHRwczovL2phY2tzb252ZXJvbmV6ZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWUyNTE4NWEwZGZmMTIwZThjYjk3MWI4IiwiYXVkIjpbImh0dHBzOi8vamFja3NvbnZlcm9uZXplLmF6dXJld2Vic2l0ZXMubmV0IiwiaHR0cHM6Ly9qYWNrc29udmVyb25lemUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTU3OTQ5NTUyNiwiZXhwIjoxNTc5NTgxOTI2LCJhenAiOiJqTEpzcE5JZVFpMjU2TnBDd2JreVdITGsxNHdROWdQYiIsInNjb3BlIjoicHJvZmlsZSBvcGVuaWQgb2ZmbGluZV9hY2Nlc3MiLCJndHkiOiJwYXNzd29yZCIsInBlcm1pc3Npb25zIjpbImNyZWF0ZTphZGRyZXNzIiwiY3JlYXRlOmludGVydmlldyIsImNyZWF0ZTpwZXJzb24iLCJyZWFkOmFkZHJlc3MiLCJyZWFkOmludGVydmlldyIsInJlYWQ6cGVyc29uIiwicmVhZDpwZXJzb24tYWRkcmVzcyIsInJlYWQ6cGVyc29uLWludGVydmlldyIsInJlbW92ZTphZGRyZXNzIiwicmVtb3ZlOmludGVydmlldyIsInJlbW92ZTpwZXJzb24iLCJ1cGRhdGU6YWRkcmVzcyIsInVwZGF0ZTppbnRlcnZpZXciLCJ1cGRhdGU6cGVyc29uIl19.UCCddntcYTUq1GWbRoLU9wexS3qISqiOsnjiDgAEBRcuTQNK_0q9xtQwZK48VaEqhFBzl1VmoEf8rXOq626VH5P3TxE4XdXd4g6bnrlVNMBswxHnsA57WUxzJZnW5Sbe6bEW1rHY-PlZ9TjxKkLkolKAyo72f0PfExN-8Yj9TXpVoQUEweYDlk-jIS23qbrVdLaiJtveR4OsoGUp7rXUzu_cTSs81EEjVw_ZGtpLQ5tfRVbPhGK7lXCrKZPuwY6MJj9wX2uMw3InCV-VyP8ZbQbxy94Mpd7m-nxrIqeZ3xQZurLRohTgpEtzwAtkH6di448_7_WF6JWBi3yFQjluUA",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

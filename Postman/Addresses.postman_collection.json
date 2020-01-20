@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "ada0187b-70d5-432f-ae16-3a5619d78110",
+		"name": "Addresses",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Addresses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/Addresses",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"Addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Addresses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"PostalCode\": \"01001-000\",\n  \"State\": \"sp2\",\n  \"City\": \"São Paulo\",\n  \"District\": \"Sé\",\n  \"Street\": \"Praça da Sé\",\n  \"StreetNumber\": 151,\n  \"Complement\": \"\",\n  \"PrimaryAddress\": false,\n  \"PersonId\": \"db857236-a6ca-4491-af3c-51c77264a141\"\n}"
+				},
+				"url": {
+					"raw": "{{api_url}}/Addresses",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"Addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Addresses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/Addresses/49587682-d75d-4abe-a63b-73fdb476e696",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"Addresses",
+						"49587682-d75d-4abe-a63b-73fdb476e696"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "273e6c21-b702-4f74-bfe1-db48c3459793",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d86afdd4-3f7c-4dce-97db-07fa9563de1e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "bcc5e26c-2c22-41c6-b51e-5c606da94faa",
+			"key": "api_url",
+			"value": "https://jacksonveroneze.azurewebsites.net",
+			"type": "string"
+		},
+		{
+			"id": "879a16a6-2bfa-4474-afe8-22768bfc44d3",
+			"key": "token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJETkVNalV5UXpGRE56ZENOVEpGUXpoQ1JFSXpNMFl6T0VJd016TXdNRUpFTWtaRk5qVTBSZyJ9.eyJpc3MiOiJodHRwczovL2phY2tzb252ZXJvbmV6ZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWUyNTE4NWEwZGZmMTIwZThjYjk3MWI4IiwiYXVkIjpbImh0dHBzOi8vamFja3NvbnZlcm9uZXplLmF6dXJld2Vic2l0ZXMubmV0IiwiaHR0cHM6Ly9qYWNrc29udmVyb25lemUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTU3OTQ5MTM0MiwiZXhwIjoxNTc5NTc3NzQyLCJhenAiOiJqTEpzcE5JZVFpMjU2TnBDd2JreVdITGsxNHdROWdQYiIsInNjb3BlIjoicHJvZmlsZSBvcGVuaWQgcmVhZDpwZXJzb25zIG9mZmxpbmVfYWNjZXNzIiwiZ3R5IjoicGFzc3dvcmQiLCJwZXJtaXNzaW9ucyI6WyJjcmVhZTpwZXJzb25zIiwicmVhZDpwZXJzb25zIl19.nRnYoILkGMB98tD6pOdGzeM9VivXeMlhvWQI3JC4oi1f2wjZvEZM9m5Fn4aXWvdKZCufBlXJNekryqhXb4oxao4u7kdtFrcMNSfcAig41bnse8x2XvMnQei4WHAw3Z88bFnXfr9rUd85lM91cupd7eCKNH0ALS_uIijWN1WohB9jskgpbnqGjZIkIYvwoP_8OnDnWZ0fFnURrXqNBTHH9QLwfkkn9bxsZKH9ayauEz9yPRsw7r7GPC0A5j9ru41vxGqbGlUlrQJuisP9JLm3bpZCzL3HYa5Gj9QFU4a56KRj_HCzJbXyIoIRW853Q1NUm0uJVnN9b9YmR_mPYqSyIA",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

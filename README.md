@@ -36,9 +36,12 @@ Follow these steps to get your development environment set up:
      ```
 	 dotnet run 
 	   ```
-  5. Launch [http://localhost:5000/](http://localhost:5000/) in your client to consult the API.
+  5. Launch local [http://localhost:5000/](http://localhost:5000/) in your client to consult the API.
   
-  6. Launch [http://localhost:5000/check](http://localhost:5000/check) in your client to consult the API health.
+  6. Launch local [http://localhost:5000/check](http://localhost:5000/check) in your client to consult the API health.
+
+
+  Online Demo: [https://jacksonveroneze.azurewebsites.net](https://jacksonveroneze.azurewebsites.net)
 
 ## Technologies
 * .NET Core 3.1

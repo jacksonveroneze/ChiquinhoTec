@@ -1,6 +1,6 @@
 # Pharmacy
 
-API developed to be consulted in the pharmacy application.
+API developed to be consulted in the ChiquinhoTec - Gerenciador Contrataçãoo application.
 
 ## Getting Started
 Use these instructions to get the project up and running.

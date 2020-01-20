@@ -83,7 +83,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
 
             loggerFactory.AddSerilog();
 
-            app.UseRequestResponseLogging();
+            //app.UseRequestResponseLogging();
 
             app.UseCors(AllowAllCors);
 

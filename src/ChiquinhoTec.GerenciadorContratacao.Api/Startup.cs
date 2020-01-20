@@ -1,27 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using ChiquinhoTec.GerenciadorContratacao.Api.Middlewares;
 using ChiquinhoTec.GerenciadorContratacao.Infra.Data;
 using ChiquinhoTec.GerenciadorContratacao.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Serilog;
 using Serilog.Events;
-using Serilog.Sinks.Elasticsearch;
 using Serilog.Sinks.SystemConsole.Themes;
+using System.Globalization;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Api
 {
@@ -82,7 +73,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
                 //app.UseDeveloperExceptionPage();
             }
 
-            var supportedCultures = new[] { new CultureInfo("pt-BR") };
+            CultureInfo[] supportedCultures = new[] { new CultureInfo("pt-BR") };
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture(culture: "pt-BR", uiCulture: "pt-BR"),
@@ -92,7 +83,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
 
             loggerFactory.AddSerilog();
 
-            //app.UseRequestResponseLogging();
+            app.UseRequestResponseLogging();
 
             app.UseCors(AllowAllCors);
 

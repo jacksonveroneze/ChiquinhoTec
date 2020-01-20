@@ -50,6 +50,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
                     .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                     .MinimumLevel.Override("System", LogEventLevel.Information)
                     .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
+                    .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Information)
                     .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Literate)
                     .Enrich.FromLogContext()
                     //.WriteTo.MongoDB(mongoUri, collectionName: "applog")
@@ -78,7 +79,20 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
 
             services.AddAuthorization(options =>
             {
+                options.AddPolicy("create:address", policy => policy.Requirements.Add(new HasScopeRequirement("create:address", "https://jacksonveroneze.auth0.com/")));
+                options.AddPolicy("create:interview", policy => policy.Requirements.Add(new HasScopeRequirement("create:interview", "https://jacksonveroneze.auth0.com/")));
+                options.AddPolicy("create:person", policy => policy.Requirements.Add(new HasScopeRequirement("create:person", "https://jacksonveroneze.auth0.com/")));
+                options.AddPolicy("read:address", policy => policy.Requirements.Add(new HasScopeRequirement("read:address", "https://jacksonveroneze.auth0.com/")));
+                options.AddPolicy("read:interview", policy => policy.Requirements.Add(new HasScopeRequirement("read:interview", "https://jacksonveroneze.auth0.com/")));
                 options.AddPolicy("read:person", policy => policy.Requirements.Add(new HasScopeRequirement("read:person", "https://jacksonveroneze.auth0.com/")));
+                options.AddPolicy("read:person-address", policy => policy.Requirements.Add(new HasScopeRequirement("read:person", "https://jacksonveroneze.auth0.com/")));
+                options.AddPolicy("read:person-interview", policy => policy.Requirements.Add(new HasScopeRequirement("read:person", "https://jacksonveroneze.auth0.com/")));
+                options.AddPolicy("remove:address", policy => policy.Requirements.Add(new HasScopeRequirement("remove:address", "https://jacksonveroneze.auth0.com/")));
+                options.AddPolicy("remove:interview", policy => policy.Requirements.Add(new HasScopeRequirement("remove:interview", "https://jacksonveroneze.auth0.com/")));
+                options.AddPolicy("remove:perso", policy => policy.Requirements.Add(new HasScopeRequirement("remove:perso", "https://jacksonveroneze.auth0.com/")));
+                options.AddPolicy("update:address", policy => policy.Requirements.Add(new HasScopeRequirement("update:address", "https://jacksonveroneze.auth0.com/")));
+                options.AddPolicy("update:interview", policy => policy.Requirements.Add(new HasScopeRequirement("update:interview", "https://jacksonveroneze.auth0.com/")));
+                options.AddPolicy("update:person", policy => policy.Requirements.Add(new HasScopeRequirement("update:person", "https://jacksonveroneze.auth0.com/")));
             });
 
             services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();

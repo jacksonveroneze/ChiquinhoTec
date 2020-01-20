@@ -51,6 +51,7 @@ Follow these steps to get your development environment set up:
 * Entity Framework Core 3.1
 * Application Insights
 * CI/CD Azure DevOps
+* OAuth2(Auth0 Service).
 
 ## License
 

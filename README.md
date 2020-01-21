@@ -45,7 +45,7 @@ Follow these steps to get your development environment set up:
   [https://jacksonveroneze.azurewebsites.net/check](https://jacksonveroneze.azurewebsites.net/check) to consult the API health.
 
 ## Technologies
-* C# .0
+* C# 8.0
 * .NET Core 3.1
 * ASP.NET Core 3.1
 * Entity Framework Core 3.1

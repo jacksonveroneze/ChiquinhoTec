@@ -38,7 +38,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
                 Person person = await personRepository.FindAsync(val);
 
                 return person != null;
-            }).WithMessage("PersonId não localizado.");
+            }).WithMessage("O valor informado em PersonId não localizado no banco de dados.");
 
             RuleFor(x => x.PostalCode)
             .NotEmpty()
@@ -57,8 +57,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
                     return false;
 
                 return true;
-
-            }).WithMessage("Os dados informados não coincidem com os dados retornados do web-service.");
+            }).WithMessage("Os dados informados no endereço não são válidos conforme consulta no webservice(https://viacep.com.br).");
         }
     }
 }

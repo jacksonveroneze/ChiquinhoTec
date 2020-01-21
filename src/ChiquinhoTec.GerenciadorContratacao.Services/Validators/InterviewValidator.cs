@@ -39,14 +39,14 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
 
                     return interview is null;
                 })
-                .WithMessage("Deve haver um intervalo de 3 horas entre as entrevistas para o mesmo candidato.")
+                .WithMessage("Deve haver um intervalo de 3 horas entre as entrevistas para o mesmo candidato no mesmo dia.")
                 .MustAsync(async (request, val, token) =>
                  {
                      Interview interview = await interviewRepository.FindInterviewBySquadAndDate(request.Squad, request.SchedulingDate);
 
                      return interview is null;
                  })
-                .WithMessage("Deve haver um intervalo de 3 horas entre as entrevistas para o mesmo squad.");
+                .WithMessage("Deve haver um intervalo de 3 horas entre as entrevistas para o mesmo squad no mesmo dia.");
 
             RuleFor(x => x.Squad)
                 .IsInEnum()
@@ -59,7 +59,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
                     Person person = await personRepository.FindAsync(val);
 
                     return person != null;
-                }).WithMessage("PersonId não localizado.")
+                }).WithMessage("O valor informado em PersonId não localizado no banco de dados.")
                 .MustAsync(async (request, val, token) =>
                 {
                     Interview interview = await interviewRepository.FindInterviewCurrentYearByPersonIdAndSquad(request.PersonId, request.Squad);

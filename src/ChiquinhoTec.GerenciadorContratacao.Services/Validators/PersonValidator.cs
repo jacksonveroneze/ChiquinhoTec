@@ -22,6 +22,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
         public PersonValidator(IPersonRepository personRepository)
         {
             RuleFor(x => x.Name).NotEmpty();
+            RuleFor(x => x.BirthDate).NotEmpty();
+            RuleFor(x => x.Phone).NotEmpty();
+            RuleFor(x => x.Profile).NotEmpty();
 
             RuleFor(x => x.Email)
                 .NotEmpty()
@@ -40,14 +43,14 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
                         return true;
 
                     return false;
-                }).WithMessage("E-mail já encontra-se cadastrado.");
+                }).WithMessage("O e-mail informado já encontra-se cadastrado.");
 
             RuleFor(x => x.Cpf)
                 .NotEmpty()
-                .Must(ValidCpf).WithMessage("CPF inválido.")
+                .Must(ValidCpf).WithMessage("O cpf informado é inválido.")
                 .MustAsync(async (request, val, token) =>
                 {
-                   Person person = await personRepository.FindPersonByCpfAsync(val);
+                    Person person = await personRepository.FindPersonByCpfAsync(val);
 
                     if (person is null)
                         return true;
@@ -59,7 +62,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
                         return true;
 
                     return false;
-                }).WithMessage("CPF já encontra-se cadastrado.");
+                }).WithMessage("O cpf informado já encontra-se cadastrado.");
         }
 
         //
@@ -87,6 +90,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
             {
                 return false;
             }
+
             tempCpf = number.Substring(0, 9);
 
             soma = 0;
@@ -127,6 +131,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Services.Validators
             }
 
             digito = digito + resto.ToString();
+
             return number.EndsWith(digito);
         }
     }

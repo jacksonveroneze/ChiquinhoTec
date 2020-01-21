@@ -39,10 +39,13 @@ Follow these steps to get your development environment set up:
   5. Launch local [http://localhost:5000/](http://localhost:5000/) in your client to consult the API or  
      [http://localhost:5000/check](http://localhost:5000/check) to consult the API health.
 
-### Setup
+### Demo
 
   Online Demo: [https://jacksonveroneze.azurewebsites.net](https://jacksonveroneze.azurewebsites.net) in your client to consult the API or  
   [https://jacksonveroneze.azurewebsites.net/check](https://jacksonveroneze.azurewebsites.net/check) to consult the API health.
+  
+### Blazemeter
+Performance: [https://a.blazemeter.com/app/?public-token=UITkCloLEfduaYkJ54E1EpKZaXwYGE2eJFrdSvSeYXFYUdmn28#/accounts/415846/workspaces/414620/projects/506690/masters/25059817/summary](https://a.blazemeter.com/app/?public-token=UITkCloLEfduaYkJ54E1EpKZaXwYGE2eJFrdSvSeYXFYUdmn28#/accounts/415846/workspaces/414620/projects/506690/masters/25059817/summary)
 
 ## Technologies
 * C# 8.0

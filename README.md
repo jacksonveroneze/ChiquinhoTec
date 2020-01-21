@@ -52,6 +52,7 @@ Follow these steps to get your development environment set up:
 * Application Insights
 * CI/CD Azure DevOps
 * OAuth2(Auth0 Service)
+* Postgres 12
 
 ## License
 

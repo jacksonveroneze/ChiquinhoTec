@@ -1,5 +1,4 @@
 using AutoMapper;
-using ChiquinhoTec.GerenciadorContratacao.Api.Middlewares;
 using ChiquinhoTec.GerenciadorContratacao.Infra.Data;
 using ChiquinhoTec.GerenciadorContratacao.IoC;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -12,8 +11,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using Serilog.Events;
-using Serilog.Sinks.SystemConsole.Themes;
 using System.Globalization;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Api
@@ -44,17 +41,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
             services.AddAutoMapper(typeof(MappingProfile));
 
             string mongoUri = Configuration["MongoConfiguration:Uri"];
-
-            Log.Logger = new LoggerConfiguration()
-                    .MinimumLevel.Debug()
-                    .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                    .MinimumLevel.Override("System", LogEventLevel.Information)
-                    .MinimumLevel.Override("Microsoft.Hosting.Lifetime", LogEventLevel.Information)
-                    .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Information)
-                    .WriteTo.Console(outputTemplate: "[{Timestamp:HH:mm:ss} {Level}] {SourceContext}{NewLine}{Message:lj}{NewLine}{Exception}{NewLine}", theme: AnsiConsoleTheme.Literate)
-                    .Enrich.FromLogContext()
-                    //.WriteTo.MongoDB(mongoUri, collectionName: "applog")
-                    .CreateLogger();
 
             services.AddCors(options =>
             {
@@ -102,9 +88,9 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
-            {
                 //app.UseDeveloperExceptionPage();
-            }
+   
+            app.UseSerilogRequestLogging();
 
             CultureInfo[] supportedCultures = new[] { new CultureInfo("pt-BR") };
             app.UseRequestLocalization(new RequestLocalizationOptions
@@ -113,10 +99,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
                 SupportedCultures = supportedCultures,
                 SupportedUICultures = supportedCultures
             });
-
-            loggerFactory.AddSerilog();
-
-            //app.UseRequestResponseLogging();
 
             app.UseCors(AllowAllCors);
 

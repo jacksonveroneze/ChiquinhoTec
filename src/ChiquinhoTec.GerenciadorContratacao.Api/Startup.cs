@@ -1,4 +1,5 @@
 using AutoMapper;
+using ChiquinhoTec.GerenciadorContratacao.Api.Middlewares;
 using ChiquinhoTec.GerenciadorContratacao.Infra.Data;
 using ChiquinhoTec.GerenciadorContratacao.IoC;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -110,6 +111,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseMiddleware<GraphQLMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {

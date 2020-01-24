@@ -65,6 +65,7 @@ Performance: [https://a.blazemeter.com/app/?public-token=UITkCloLEfduaYkJ54E1EpK
 - Application Insights
 - CI/CD Azure DevOps
 - OAuth2(Auth0 Service)
+- GraphQL
 
 ## License
 

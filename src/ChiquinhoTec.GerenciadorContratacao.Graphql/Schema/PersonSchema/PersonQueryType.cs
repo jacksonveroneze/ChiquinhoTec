@@ -26,8 +26,8 @@ namespace ChiquinhoTec.GerenciadorContratacao.Graphql.Schema.PersonSchema
             Field<ListGraphType<PersonType>>(
                 name: "allPersons",
                 arguments: new QueryArguments(
-                    new QueryArgument<NonNullGraphType<IntGraphType>> { Name = "skip" },
-                    new QueryArgument<NonNullGraphType<IntGraphType>> { Name = "take" }
+                    new QueryArgument<IntGraphType> { Name = "skip" },
+                    new QueryArgument<IntGraphType> { Name = "take" }
                 ),
                 resolve: context => personRepository.FindAllAsync());
 

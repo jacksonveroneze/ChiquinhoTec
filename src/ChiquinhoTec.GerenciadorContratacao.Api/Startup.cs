@@ -19,15 +19,12 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
     public class Startup
     {
         public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+            => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
         private const string AllowAllCors = "AllowAll";
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddPersistence(Configuration);
@@ -85,7 +82,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api
             services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())

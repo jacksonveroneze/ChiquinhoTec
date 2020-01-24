@@ -28,7 +28,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Graphql.Schema.PersonSchema
             Field(x => x.ProfessionalDescription);
             Field(x => x.CreatedAt, type: typeof(StringGraphType));
             Field(x => x.UpdatedAt, type: typeof(StringGraphType));
-            Field(x => x.UpdatedAt, type: typeof(StringGraphType));
             Field(x => x.Version);
             Field(x => x.IsActive);
         }

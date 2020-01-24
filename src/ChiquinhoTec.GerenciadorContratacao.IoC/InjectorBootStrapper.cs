@@ -1,6 +1,7 @@
 ﻿using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
+using ChiquinhoTec.GerenciadorContratacao.Graphql.ScalarTypes;
 using ChiquinhoTec.GerenciadorContratacao.Graphql.Schema;
 using ChiquinhoTec.GerenciadorContratacao.Graphql.Schema.PersonSchema;
 using ChiquinhoTec.GerenciadorContratacao.Infra.Data.Repositories;
@@ -47,10 +48,13 @@ namespace ChiquinhoTec.GerenciadorContratacao.IoC
             services.AddSingleton<QueryType>();
             services.AddSingleton<MutationType>();
             //
-            // services.AddSingleton<PersonMutationType>();
-            //services.AddSingleton<PersonQueryType>();
+            services.AddTransient<PersonMutationType>();
+            services.AddTransient<PersonQueryType>();
             services.AddSingleton<PersonType>();
             services.AddSingleton<PersonInputType>();
+            //
+            services.AddSingleton<EmailGraphType>();
+            services.AddSingleton<CpfGraphType>();
             //
             // GraphQL - Structure
             //

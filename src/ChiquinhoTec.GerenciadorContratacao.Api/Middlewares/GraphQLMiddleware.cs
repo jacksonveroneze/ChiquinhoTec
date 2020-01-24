@@ -1,4 +1,5 @@
 ﻿using ChiquinhoTec.GerenciadorContratacao.Graphql;
+using ChiquinhoTec.GerenciadorContratacao.Graphql.FieldsMiddleware;
 using GraphQL;
 using GraphQL.DataLoader;
 using GraphQL.Http;
@@ -77,18 +78,17 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Middlewares
 
                 DateTime start = DateTime.UtcNow;
 
-                ExecutionResult result = await _documentExecutor.ExecuteAsync(_ =>
+                ExecutionResult result = await _documentExecutor.ExecuteAsync(x =>
                 {
-                    _.Schema = schema;
-                    _.Query = request.Query;
-                    _.Inputs = request.Variables.ToInputs();
-                    _.Listeners.Add(serviceProvider.GetRequiredService<DataLoaderDocumentListener>());
-                    _.ExposeExceptions = false;
-                    _.ComplexityConfiguration = new ComplexityConfiguration { MaxDepth = 15 };
-                    _.ValidationRules = DocumentValidator.CoreRules().Concat(_validationRules).ToList();
+                    x.Schema = schema;
+                    x.Query = request.Query;
+                    x.Inputs = request.Variables.ToInputs();
+                    x.Listeners.Add(serviceProvider.GetRequiredService<DataLoaderDocumentListener>());
+                    x.ExposeExceptions = false;
+                    x.ComplexityConfiguration = new ComplexityConfiguration { MaxDepth = 15 };
+                    //x.FieldMiddleware.Use<DefaultFieldMiddleware>();
+                    x.ValidationRules = DocumentValidator.CoreRules().Concat(_validationRules).ToList();
                 }).ConfigureAwait(false);
-
-                //result.EnrichWithApolloTracing(start);
 
                 string json = await _documentWriter.WriteToStringAsync(result);
 

@@ -37,7 +37,7 @@ Follow these steps to get your development environment set up:
   5. Run application:
      ```
 	 dotnet run 
-	   ```
+     ```
   5. Launch local [http://localhost:5000/](http://localhost:5000/) in your client to consult the API or  
      [http://localhost:5000/check](http://localhost:5000/check) to consult the API health.
 

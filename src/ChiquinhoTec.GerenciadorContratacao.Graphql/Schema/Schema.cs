@@ -24,11 +24,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Graphql.Schema
             Mutation = resolver.Resolve<MutationType>();
 
             RegisterDirective(new FormatCpfDirectiveType());
-
-            //RegisterDirective(new ToLowerDirectiveType());
-            //RegisterDirective(new ToUpperDirectiveType());
-            //RegisterDirective(new FormatPostalCodeDirectiveType());
-            //RegisterDirective(new FormatDateTimeDirectiveType());
         }
     }
 }

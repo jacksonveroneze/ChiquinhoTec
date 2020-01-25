@@ -28,11 +28,11 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
 
         public DateTime BirthDate { get; private set; }
 
-        public Cpf Cpf { get; private set; }
+        public virtual Cpf Cpf { get; private set; }
 
         public string Phone { get; private set; }
 
-        public Email Email { get; private set; }
+        public virtual Email Email { get; private set; }
 
         public string Profile { get; private set; }
 

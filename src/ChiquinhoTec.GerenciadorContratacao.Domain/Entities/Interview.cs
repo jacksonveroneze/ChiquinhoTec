@@ -23,7 +23,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
 
         public Squads Squad { get; private set; }
 
-        public Person Person { get; private set; }
+        public virtual Person Person { get; private set; }
 
         public void Update(DateTime schedulingDate, Squads squad)
         {

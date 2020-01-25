@@ -3,6 +3,8 @@ using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
 using ChiquinhoTec.GerenciadorContratacao.Graphql.ScalarTypes;
 using ChiquinhoTec.GerenciadorContratacao.Graphql.Schema;
+using ChiquinhoTec.GerenciadorContratacao.Graphql.Schema.AddressSchema;
+using ChiquinhoTec.GerenciadorContratacao.Graphql.Schema.InterviewSchema;
 using ChiquinhoTec.GerenciadorContratacao.Graphql.Schema.PersonSchema;
 using ChiquinhoTec.GerenciadorContratacao.Infra.Data.Repositories;
 using ChiquinhoTec.GerenciadorContratacao.Services;
@@ -48,13 +50,23 @@ namespace ChiquinhoTec.GerenciadorContratacao.IoC
             services.AddSingleton<QueryType>();
             services.AddSingleton<MutationType>();
             //
+            services.AddTransient<AddressMutationType>();
+            services.AddTransient<AddressQueryType>();
+            services.AddTransient<AddressType>();
+            services.AddTransient<AddressInputType>();
+            //
+            services.AddTransient<InterviewMutationType>();
+            services.AddTransient<InterviewQueryType>();
+            services.AddTransient<InterviewType>();
+            services.AddTransient<InterviewInputType>();
+            //
             services.AddTransient<PersonMutationType>();
             services.AddTransient<PersonQueryType>();
-            services.AddSingleton<PersonType>();
-            services.AddSingleton<PersonInputType>();
+            services.AddTransient<PersonType>();
+            services.AddTransient<PersonInputType>();
             //
-            services.AddSingleton<EmailGraphType>();
-            services.AddSingleton<CpfGraphType>();
+            services.AddTransient<EmailGraphType>();
+            services.AddTransient<CpfGraphType>();
             //
             // GraphQL - Structure
             //

@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "fc5adcc4-0135-47c0-b70d-2945361b6e36",
+		"name": "Persons",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Persons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/Persons",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"Persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"Name\": \"Joana da Silva\",\n  \"BirthDate\": \"1987-05-12\",\n  \"Cpf\": \"88732141858\",\n  \"Phone\": \"49 99998-3759\",\n  \"Email\": \"jackson4@jacksonveroneze.com\",\n  \"Profile\": \"Admin\",\n  \"ProfessionalDescription\": \"Professional Description\"\n}"
+				},
+				"url": {
+					"raw": "{{api_url}}/Persons",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"Persons"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/Persons/1",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"Persons",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persons - Addresses",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/Persons/e62af863-309f-41fd-be74-3847321fe615/Addresses",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"Persons",
+						"e62af863-309f-41fd-be74-3847321fe615",
+						"Addresses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persons - Interviews",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}//Persons/e9036721-4c24-41f1-bcab-c15234de127d/Interviews",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"",
+						"Persons",
+						"e9036721-4c24-41f1-bcab-c15234de127d",
+						"Interviews"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persons",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"Id\": \"e62af863-309f-41fd-be74-3847321fe615\",\n  \"Name\": \"Jackson Veroneze\",\n  \"BirthDate\": \"1987-05-12\",\n  \"Cpf\": \"84539303171\",\n  \"Phone\": \"49 99998-3759\",\n  \"Email\": \"jackson3@jacksonveroneze.com\",\n  \"Profile\": \"Admin\",\n  \"ProfessionalDescription\": \"Professional Description 2\"\n}"
+				},
+				"url": {
+					"raw": "{{api_url}}//Persons/e62af863-309f-41fd-be74-3847321fe615",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"",
+						"Persons",
+						"e62af863-309f-41fd-be74-3847321fe615"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Persons - Filter",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/Persons?Email=jackson32@jacksonveroneze.com&City=São Paulo2&State=SP2",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"",
+						"Persons"
+					],
+					"query": [
+						{
+							"key": "Email",
+							"value": "jackson32@jacksonveroneze.com"
+						},
+						{
+							"key": "City",
+							"value": "São Paulo2"
+						},
+						{
+							"key": "State",
+							"value": "SP2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Interviews - Filter",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{api_url}}/Interviews?PersonName=Jackson11&PersonCpf=845393031711&Squad=7&SchedulingDate=2020-01-17 14:02:57&Email=jackson31@jacksonveroneze.com",
+					"host": [
+						"{{api_url}}"
+					],
+					"path": [
+						"",
+						"Interviews"
+					],
+					"query": [
+						{
+							"key": "PersonName",
+							"value": "Jackson11"
+						},
+						{
+							"key": "PersonCpf",
+							"value": "845393031711"
+						},
+						{
+							"key": "Squad",
+							"value": "7"
+						},
+						{
+							"key": "SchedulingDate",
+							"value": "2020-01-17 14:02:57"
+						},
+						{
+							"key": "Email",
+							"value": "jackson31@jacksonveroneze.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "5a654853-01a5-4024-89a2-413bb53fe9f5",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "2e8f60a4-fe9c-437d-a16e-ad87c9c353bc",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "b4757f07-9ae7-483b-b065-2e7969240570",
+			"key": "api_url",
+			"value": "https://jacksonveroneze.azurewebsites.net",
+			"type": "string"
+		},
+		{
+			"id": "14a71d0c-cced-4fe9-aeb1-f6406eef6a6f",
+			"key": "token",
+			"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJETkVNalV5UXpGRE56ZENOVEpGUXpoQ1JFSXpNMFl6T0VJd016TXdNRUpFTWtaRk5qVTBSZyJ9.eyJpc3MiOiJodHRwczovL2phY2tzb252ZXJvbmV6ZS5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWUyNTg1YzVjNWM0N2YwZTRmYmE5ODI0IiwiYXVkIjpbImh0dHBzOi8vamFja3NvbnZlcm9uZXplLmF6dXJld2Vic2l0ZXMubmV0IiwiaHR0cHM6Ly9qYWNrc29udmVyb25lemUuYXV0aDAuY29tL3VzZXJpbmZvIl0sImlhdCI6MTU3OTUxODI1NSwiZXhwIjoxNTc5NjA0NjU1LCJhenAiOiJqTEpzcE5JZVFpMjU2TnBDd2JreVdITGsxNHdROWdQYiIsInNjb3BlIjoicHJvZmlsZSBvcGVuaWQgb2ZmbGluZV9hY2Nlc3MiLCJndHkiOiJwYXNzd29yZCIsInBlcm1pc3Npb25zIjpbInJlYWQ6YWRkcmVzcyIsInJlYWQ6aW50ZXJ2aWV3IiwicmVhZDpwZXJzb24iLCJyZWFkOnBlcnNvbi1hZGRyZXNzIiwicmVhZDpwZXJzb24taW50ZXJ2aWV3Il19.Gr_2l5LZcm8MrFtCao4HqC8OYBlzxnL7TUUw1dNfFsbWPYT-F-Xt3ifU2Akahi1OgQ87VTTzFnf8RIz7XFbRZpHYASLtIxg9NC9Oo43DDq7j9DSYtNSguW_g44S7bUb2KSQeEuFH7ridJ6z6iu9EPlry6f2kTrNWU70QOHNpQFa94hXp-PHppUkw0z2sXRmGNftXkrPADo_FtR1pT7T7IWC7z9KVwWF-oaCVkaItFZwvzbLF4m2PMyjkt10ihjcmKhMMiCbiJKxetTatI8mn1x2SSGWUQBNKPMWA6Sf5HfUU-B2sYZuMnapFFIK71b0usvABjTXSAHsx8dtXjuQC7A",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

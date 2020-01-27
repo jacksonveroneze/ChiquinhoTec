@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using ChiquinhoTec.GerenciadorContratacao.Common;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
@@ -17,5 +19,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories
         Task<Person> FindPersonByCpfAsync(string value);
 
         Task<Person> FindPersonByEmailAsync(string value);
+
+        Task<IDictionary<Guid, Person>> FindPersonsByIdAsync(IEnumerable<Guid> userIds, CancellationToken token);
     }
 }

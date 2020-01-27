@@ -6,9 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="GraphQL" Version="2.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.Domain\ChiquinhoTec.GerenciadorContratacao.Domain.csproj" />
-    <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.Graphql\ChiquinhoTec.GerenciadorContratacao.Graphql.csproj" />
-    <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.Infra.Data\ChiquinhoTec.GerenciadorContratacao.Infra.Data.csproj" />
     <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.Services\ChiquinhoTec.GerenciadorContratacao.Services.csproj" />
   </ItemGroup>
+
 </Project>

@@ -1,0 +1,142 @@
+{
+	"info": {
+		"_postman_id": "88758983-32dc-4a1b-80a3-87bffd487982",
+		"name": "Auth0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "oauth/token - Avaliador",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "avaliador@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "senh@1234",
+							"type": "text"
+						},
+						{
+							"key": "audience",
+							"value": "https://jacksonveroneze.azurewebsites.net",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "read:persons offline_access profile openid",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "jLJspNIeQi256NpCwbkyWHLk14wQ9gPb",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "Rj4GYa84Gj-1GKbzDFbywlpNdCZFj9Oi36SJYFuchq9BBc3O7Qe8ZbDOvD-iIHSc",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://jacksonveroneze.auth0.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"jacksonveroneze",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "oauth/token - Candidato",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "content-type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "candidato@mail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "senh@1234",
+							"type": "text"
+						},
+						{
+							"key": "audience",
+							"value": "https://jacksonveroneze.azurewebsites.net",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "read:persons offline_access profile openid",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "jLJspNIeQi256NpCwbkyWHLk14wQ9gPb",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "Rj4GYa84Gj-1GKbzDFbywlpNdCZFj9Oi36SJYFuchq9BBc3O7Qe8ZbDOvD-iIHSc",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://jacksonveroneze.auth0.com/oauth/token",
+					"protocol": "https",
+					"host": [
+						"jacksonveroneze",
+						"auth0",
+						"com"
+					],
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

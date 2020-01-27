@@ -40,7 +40,7 @@ namespace ChiquinhoTec.GerenciadorContratacao.Domain.Entities
 
         public bool PrimaryAddress { get; private set; }
 
-        public Person Person { get; private set; }
+        public virtual Person Person { get; private set; }
 
         public void UpdatePrimaryAddress(bool value)
             => PrimaryAddress = value;

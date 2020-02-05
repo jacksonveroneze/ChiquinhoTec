@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using ChiquinhoTec.GerenciadorContratacao.Common;
 using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
@@ -77,6 +79,25 @@ namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data.Repositories
                     .Set<Person>()
                     .Where(x => x.Email.Value == value && x.IsActive == true)
                     .FirstOrDefaultAsync();
+        }
+
+        //
+        // Summary:
+        //     /// Method responsible for searching the data. ///
+        //
+        // Parameters:
+        //   id:
+        //     The id param.
+        //
+        //   token:
+        //     The token param.
+        //
+        public async Task<IDictionary<Guid, Person>> FindPersonsByIdAsync(IEnumerable<Guid> userIds, CancellationToken token)
+        {
+            return await _context
+                    .Set<Person>()
+                    .Where(x => userIds.Contains(x.Id))
+                    .ToDictionaryAsync(a => a.Id);
         }
     }
 }

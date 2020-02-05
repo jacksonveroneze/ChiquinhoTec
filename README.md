@@ -69,4 +69,4 @@ Performance: [https://a.blazemeter.com/app/?public-token=UITkCloLEfduaYkJ54E1EpK
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/jacksonveroneze/Pharmacy-API/blob/develop/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/jacksonveroneze/ChiquinhoTec/blob/develop/LICENSE) file for details.

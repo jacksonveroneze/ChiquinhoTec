@@ -86,7 +86,6 @@ namespace ChiquinhoTec.GerenciadorContratacao.Api.Middlewares
                     x.Listeners.Add(serviceProvider.GetRequiredService<DataLoaderDocumentListener>());
                     x.ExposeExceptions = false;
                     x.ComplexityConfiguration = new ComplexityConfiguration { MaxDepth = 15 };
-                    //x.FieldMiddleware.Use<DefaultFieldMiddleware>();
                     x.ValidationRules = DocumentValidator.CoreRules().Concat(_validationRules).ToList();
                 }).ConfigureAwait(false);
 

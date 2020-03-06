@@ -24,3 +24,5 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN_1 }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        projectBaseDir: src/ChiquinhoTec.GerenciadorContratacao.Api/

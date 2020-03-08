@@ -1,10 +1,10 @@
-﻿using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
-using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
-using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
-using GraphQL;
+﻿using GraphQL;
 using GraphQL.Types;
 using System;
 using System.Linq;
+using ChiquinhoTec.GerenciadorContratacao.Register.Domain.Commands;
+using ChiquinhoTec.GerenciadorContratacao.Register.Domain.Entities;
+using ChiquinhoTec.GerenciadorContratacao.Register.Domain.Interfaces.Services;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Graphql.Schema.PersonSchema
 {

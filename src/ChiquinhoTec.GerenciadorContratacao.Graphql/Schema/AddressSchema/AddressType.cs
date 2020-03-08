@@ -1,6 +1,6 @@
-﻿using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
-using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
-using ChiquinhoTec.GerenciadorContratacao.Graphql.Schema.PersonSchema;
+﻿using ChiquinhoTec.GerenciadorContratacao.Graphql.Schema.PersonSchema;
+using ChiquinhoTec.GerenciadorContratacao.Register.Domain.Entities;
+using ChiquinhoTec.GerenciadorContratacao.Register.Domain.Interfaces.Repositories;
 using GraphQL.DataLoader;
 using GraphQL.Types;
 using System;

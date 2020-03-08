@@ -1,6 +1,6 @@
 ﻿using ChiquinhoTec.GerenciadorContratacao.Common;
 
-namespace ChiquinhoTec.GerenciadorContratacao.Domain.Commands
+namespace ChiquinhoTec.GerenciadorContratacao.Register.Domain.Commands
 {
     //
     // Summary:

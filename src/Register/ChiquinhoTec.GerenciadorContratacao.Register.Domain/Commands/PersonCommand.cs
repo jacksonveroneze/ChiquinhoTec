@@ -1,15 +1,15 @@
 ﻿using System;
 using ChiquinhoTec.GerenciadorContratacao.Common;
 
-namespace ChiquinhoTec.GerenciadorContratacao.Domain.Results
+namespace ChiquinhoTec.GerenciadorContratacao.Register.Domain.Commands
 {
     //
     // Summary:
     //     /// Class responsible for the command. ///
     //
-    public class PersonResult : BaseResult
+    public class PersonCommand : BaseCommand
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
 
         public string Name { get; set; }
 

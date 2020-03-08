@@ -1,5 +1,6 @@
 ﻿using ChiquinhoTec.GerenciadorContratacao.Graphql.ScalarTypes;
 using GraphQL.Types;
+
 namespace ChiquinhoTec.GerenciadorContratacao.Graphql.Schema.PersonSchema
 {
     //

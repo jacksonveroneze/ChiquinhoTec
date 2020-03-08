@@ -1,6 +1,6 @@
-﻿using ChiquinhoTec.GerenciadorContratacao.Domain.Commands;
-using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
-using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Services;
+﻿using ChiquinhoTec.GerenciadorContratacao.Register.Domain.Commands;
+using ChiquinhoTec.GerenciadorContratacao.Register.Domain.Entities;
+using ChiquinhoTec.GerenciadorContratacao.Register.Domain.Interfaces.Services;
 using GraphQL;
 using GraphQL.Types;
 using System;

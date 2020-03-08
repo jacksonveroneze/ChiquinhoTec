@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
+using ChiquinhoTec.GerenciadorContratacao.Common;
+using ChiquinhoTec.GerenciadorContratacao.Register.Domain.Commands;
+using ChiquinhoTec.GerenciadorContratacao.Register.Domain.Entities;
+
+namespace ChiquinhoTec.GerenciadorContratacao.Register.Domain.Interfaces.Repositories
+{
+    //
+    // Summary:
+    //     /// Interface responsible for contrat. ///
+    //
+    public interface IPersonRepository : IBaseRepository<Person> 
+    {
+        Task<List<Person>> FindByFilterAsync(PersonFilterCommand command);
+     
+        Task<Person> FindPersonByCpfAsync(string value);
+
+        Task<Person> FindPersonByEmailAsync(string value);
+
+        Task<IDictionary<Guid, Person>> FindPersonsByIdAsync(IEnumerable<Guid> userIds, CancellationToken token);
+    }
+}

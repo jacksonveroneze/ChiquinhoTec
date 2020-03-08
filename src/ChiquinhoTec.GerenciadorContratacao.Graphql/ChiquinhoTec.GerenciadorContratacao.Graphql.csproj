@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.Domain\ChiquinhoTec.GerenciadorContratacao.Domain.csproj" />
     <ProjectReference Include="..\ChiquinhoTec.GerenciadorContratacao.Services\ChiquinhoTec.GerenciadorContratacao.Services.csproj" />
+    <ProjectReference Include="..\Register\ChiquinhoTec.GerenciadorContratacao.Register.Domain\ChiquinhoTec.GerenciadorContratacao.Register.Domain.csproj" />
   </ItemGroup>
 
 </Project>

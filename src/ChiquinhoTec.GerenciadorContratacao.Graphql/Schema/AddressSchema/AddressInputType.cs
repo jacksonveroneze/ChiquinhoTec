@@ -1,4 +1,5 @@
 ﻿using GraphQL.Types;
+
 namespace ChiquinhoTec.GerenciadorContratacao.Graphql.Schema.AddressSchema
 {
     //

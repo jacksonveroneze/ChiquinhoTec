@@ -1,4 +1,4 @@
-﻿using ChiquinhoTec.GerenciadorContratacao.Domain.Entities;
+﻿using ChiquinhoTec.GerenciadorContratacao.Register.Domain.Entities;
 using GraphQL.Types;
 
 namespace ChiquinhoTec.GerenciadorContratacao.Graphql.Schema.PersonSchema

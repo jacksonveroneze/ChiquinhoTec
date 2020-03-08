@@ -1,4 +1,4 @@
-﻿using ChiquinhoTec.GerenciadorContratacao.Domain.Interfaces.Repositories;
+﻿using ChiquinhoTec.GerenciadorContratacao.Register.Domain.Interfaces.Repositories;
 using GraphQL.Types;
 using System;
 

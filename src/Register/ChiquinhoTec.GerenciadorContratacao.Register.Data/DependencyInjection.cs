@@ -2,13 +2,13 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ChiquinhoTec.GerenciadorContratacao.Infra.Data
+namespace ChiquinhoTec.GerenciadorContratacao.Register.Data
 {
     public static class DependencyInjection
     {
         public static IServiceCollection AddPersistence(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<RegisterContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("ApplicationDatabase"))).AddLogging();
 
             return services;
